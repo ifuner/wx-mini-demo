@@ -1,4 +1,4 @@
-## baoji-club 小程序项目
+## xxx 小程序项目
 
 > 开发时集成eslint，框架使用原生 + westore + iview weapp 部分ui样式组件
 
