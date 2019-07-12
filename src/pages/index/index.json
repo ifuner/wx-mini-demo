@@ -1,0 +1,18 @@
+{
+  "usingComponents": {
+    "i-grid": "../../dist/grid/index",
+    "i-grid-item": "../../dist/grid-item/index",
+    "i-grid-icon": "../../dist/grid-icon/index",
+    "i-grid-label": "../../dist/grid-label/index",
+    "i-button": "../../dist/button/index",
+    "i-message": "../../dist/message/index",
+    "i-toast": "../../dist/toast/index",
+    "i-divider": "../../dist/divider/index",
+    "i-cell-group": "../../dist/cell-group/index",
+    "i-cell": "../../dist/cell/index",
+    "i-panel": "../../dist/panel/index",
+    "i-card": "../../dist/card/index",
+    "hello":"../../components/hello/hello",
+    "mt-login": "../../components/Login/login"
+  }
+}

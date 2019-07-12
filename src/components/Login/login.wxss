@@ -1,0 +1,138 @@
+.pop-get-user {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000000;
+  overflow: hidden;
+  background-color: #fff;
+  display: none;
+}
+.pop-get-user.show-pop {
+  display: block;
+}
+.pop-get-user .login-bg {
+  width: calc(100% + 1px);
+  height: 364rpx;
+  background: url("https://g.baojiesports.com/bps/99616c344e724a50bc9bfbc6f714758d-1125-549.png") center center no-repeat;
+  background-size: cover;
+  position: relative;
+}
+.pop-get-user .pop-logo {
+  background: url("https://g.baojiesports.com/bps/cc7015df7b14447192ac1b99ace432e3-105-105.png") 0 0 no-repeat;
+  background-size: cover;
+  width: 140rpx;
+  height: 140rpx;
+  display: block;
+  position: absolute;
+  bottom: -70rpx;
+  left: 50%;
+  margin-left: -70rpx;
+}
+.feedback-btn {
+  position: fixed;
+  width: 100%;
+  color: #ccc;
+  background-color: #fff;
+  text-align: center;
+  font-size: 24rpx;
+  background-color: transparent;
+  left: 50%;
+  border: 0!important;
+  transform: translateX(-50%);
+  bottom: 30rpx;
+}
+.feedback-btn::after {
+  border: none;
+}
+.pop-get-user .pop-show {
+  width: 540rpx;
+  min-height: 353rpx;
+  background-color: #fff;
+  border-radius: 26rpx;
+  position: relative;
+}
+.line-login-bg {
+  height: 2rpx;
+  width: 600rpx;
+  background-color: #E1E1E1;
+  margin: 34rpx auto;
+}
+.pop-get-user .logo-tips {
+  font-size: 30rpx;
+  color: #4A4A4A;
+  text-align: center;
+  width: 100%;
+  line-height: 26rpx;
+  font-weight: 600;
+  margin-top: 160rpx;
+}
+.pop-get-user .show-tips {
+  text-align: center;
+  width: 100%;
+  display: block;
+  margin: 36rpx auto 0;
+  font-size: 24rpx;
+  color: #9B9B9B;
+}
+.pop-get-user .btn {
+  height: 84rpx;
+  line-height: 84rpx;
+  width: 368rpx;
+  border: none;
+  text-align: center;
+  background-image: linear-gradient(-90deg, #FF2741 0%, #FD216F 100%);
+  border-radius: 200rpx;
+  font-size: 32rpx;
+  color: #fff;
+}
+.pop-get-user .abo {
+  margin: 123rpx auto 0;
+}
+.pop-get-user .btn::after {
+  border: none;
+}
+/* 弹出框 */
+.pass {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 30rpx auto;
+}
+.password {
+  width: 80%;
+  height: 60rpx;
+  line-height: 60rpx;
+  padding: 0 15rpx;
+  font-size: 24rpx;
+  border-radius: 10rpx;
+  border: 2rpx solid #ccc;
+}
+.pop-choose-list-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 20px;
+}
+.pop-choose-list {
+  border: 2rpx solid #ccc;
+  background-color: #fff;
+  border-radius: 200rpx;
+  width: 100rpx;
+  line-height: 64rpx;
+  font-size: 28rpx;
+  text-align: center;
+  color: #666;
+}
+.pop-choose-list.active {
+  color: #fff;
+  border: 2rpx solid #FF2741;
+  background-color: #FF2741;
+}
+.tada {
+  animation: tada 1s both 2;
+}

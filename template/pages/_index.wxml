@@ -1,0 +1,5 @@
+<!-- 请不要删除这个-->
+<mt-login id="login" bindlogin="onLogin"/>
+<view>
+  create-page-name
+</view>

@@ -1,0 +1,6 @@
+<i-card title="这个是组件哟" extra="看看数值变化">
+    <view slot="content">
+        <i-button bind:click="weStoreTestNum" type="success" long="true">点击计数 {{index.num}}</i-button>
+    </view>
+    <!--<view slot="footer">尾部内容</view>-->
+</i-card>
