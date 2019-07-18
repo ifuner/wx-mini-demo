@@ -78,7 +78,7 @@ wxApi("fnName",params).then(res=>{}).catch(error=>{})
 
 #### 4 自定义顶部tabBar
 
-<img src="https://g.baojiesports.com/bps/e597752ab5d04f7b9be3c3af29012776-1125-2436.png" width="200">
+<img src="https://g.baojiesports.com/bps/ecde0cdefca546aa8969d62c3bd425b8-1125-2436.png" width="200">
 <img src="https://g.baojiesports.com/bps/c333dc4aebba4dd3a508fb10f8ed3eaa-1125-2436.png" width="200">
 
 
