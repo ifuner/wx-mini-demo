@@ -74,13 +74,12 @@ wxApi("fnName",params).then(res=>{}).catch(error=>{})
 
 #### 3 小程序全局状态库westore 和 登录解决方案
 
-#### 3 自定义顶部tabBar
+![小程序登录流程图](https://g.baojiesports.com/bps/b81e8750e4244cdcaa247f12a3f017fa-933-1184.png)
+
+#### 4 自定义顶部tabBar
 
 ![自定义tabBat 示例1](https://g.baojiesports.com/bps/e597752ab5d04f7b9be3c3af29012776-1125-2436.png)
 ![自定义tabBat 示例2](https://g.baojiesports.com/bps/c333dc4aebba4dd3a508fb10f8ed3eaa-1125-2436.png)
-
-![小程序登录流程图](https://g.baojiesports.com/bps/b81e8750e4244cdcaa247f12a3f017fa-933-1184.png)
-
 
 
 
