@@ -41,9 +41,9 @@ create({
             observer: function (newVal, oldVal) {
 
                 if (typeof newVal === "string") {
-                    newVal = newVal === "false" ? false : true
+                    newVal = newVal !== "false"
                 }
-                console.log("showCapsule", newVal, oldVal);
+                console.log("showCapsule", newVal, oldVal)
                 this.setValue({disTitle: newVal})
             }
         },
@@ -52,9 +52,9 @@ create({
             value: true,
             observer: function (newVal, oldVal) {
                 if (typeof newVal === "string") {
-                    newVal = newVal === "false" ? false : true
+                    newVal = newVal !== "false"
                 }
-                console.log("showCapsule", newVal, oldVal);
+                console.log("showCapsule", newVal, oldVal)
                 this.setValue({showCapsule: newVal})
             }
         },
@@ -79,7 +79,7 @@ create({
     ready: function () {
         this.update()
         this.bindClickTimes = 0
-        console.log("NavBar.this.store.data", this.store.data);
+        console.log("NavBar.this.store.data", this.store.data)
     },
     methods: {
         // 返回上一页面
@@ -91,7 +91,7 @@ create({
         _backhome() {
             this.bindClickTimes = 0
             wx.redirectTo({
-                url: '/pages/index/index',
+                url: "/pages/index/index",
             })
         },
         initClickNum() {
@@ -103,14 +103,14 @@ create({
             })
         },
         openDebug() {
-            console.log("this.disDebug", this.data.disDebug);
+            console.log("this.disDebug", this.data.disDebug)
             // 禁止再打开调试
             if (!this.data.disDebug) {
                 this.bindClickTimes ? this.bindClickTimes += 1 : this.bindClickTimes = 1
-                console.log("this.bindClickTimes", this.bindClickTimes);
+                console.log("this.bindClickTimes", this.bindClickTimes)
                 if (this.bindClickTimes >= 15) {
                     wx.navigateTo({
-                        url: '/pages/debug/debug'
+                        url: "/pages/debug/debug"
                     })
                 }
             } else {

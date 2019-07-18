@@ -7,7 +7,7 @@ import config from "../config"
 import util from "./util"
 import apiData from "./apiData/index"
 import store from "../store"
-import wxApi from "./wxApi";
+import wxApi from "./wxApi"
 
 const ALL_SUPPROTS = ["OPTIONS", "GET", "HEAD", "POST", "PUT", "DELETE", "TRACE", "CONNECT"]
 const delBlank = function (stringData) {
@@ -18,15 +18,15 @@ const cancleToken = function (isOpen = false) {
 }
 
 const getCurrentPage = () => {
-    const current = getCurrentPages()[getCurrentPages().length - 1];
-    let params = "/" + current.route;
-    let options = current.options;
+    const current = getCurrentPages()[getCurrentPages().length - 1]
+    let params = "/" + current.route
+    let options = current.options
     if (Object.keys(options).length > 0) {
         for (let i in options) {
             params += `${params.indexOf("?") > 0 ? "&" : "?"}${i}=${options[i]}`
         }
     }
-    return params;
+    return params
 }
 // 设置token
 const setToken = (token = null) => {
@@ -37,7 +37,7 @@ const reGetLogin = () => new Promise((resolve, reject) => {
     store.data.reTryLoginTimes++
     if (store.data.reTryLoginTimes > 5) {
         store.data.reTryLoginTimes = 0
-        console.log("重试超过次数");
+        console.log("重试超过次数")
         reject(null)
     }
     Promise.all([wxApi("login"), wxApi("getUserInfo")]).then(res => {
@@ -45,6 +45,7 @@ const reGetLogin = () => new Promise((resolve, reject) => {
         const [loginData, wxUserInfoData] = res
         store.loginAccountByUniond(loginData.code).then(res => {
             if (res.success) {
+                console.log("wxUserInfoData", wxUserInfoData);
                 setToken(res.data)
                 resolve(res.data)
             } else {
@@ -150,7 +151,7 @@ const handleResponse = function (apiName, requestMethod, apiHost, args) {
                  * 2. 重试失败，包括login getUserfInfo 以及接口授权需要授权的话就默认失败走方案B 刷新
                  * */
                 reGetLogin().then(res => {
-                    console.log("自动login 尝试中");
+                    console.log("自动login 尝试中")
                     handleResponse(...tempQueryData)
                 }).catch(error => {
                     store.removeJavaToken(null).then(res => {
@@ -159,7 +160,7 @@ const handleResponse = function (apiName, requestMethod, apiHost, args) {
                             url: getCurrentPage()
                         })
                     }).catch(error => {
-                        console.log("res", res);
+                        console.log("res", res)
                     })
                 })
             } else {
@@ -173,7 +174,7 @@ const handleResponse = function (apiName, requestMethod, apiHost, args) {
     const app = getApp().globalData
     return new Promise((resolve, reject) => {
         const currentToken = store.data.loginInfo
-        console.log("currentToken", currentToken);
+        console.log("currentToken", currentToken)
         if (!app.cancleRequest) {
             const requestTask = wx.request(Object.assign({}, {...args}, {method},
                 {url: `${apiHost}${currentRequestUrl}`},

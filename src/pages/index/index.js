@@ -12,16 +12,16 @@ create(store, {
     },
 
     onShow() {
-        console.log("index.onShow");
+        console.log("index.onShow")
     },
 
     onLogin(data) {
         this.update()
-        console.warn("onLogin 初始化检查登录逻辑", data);
+        console.warn("onLogin 初始化检查登录逻辑", data)
         this.wxApi("getSavedFileList").then(res => {
-            console.log("res", res);
+            console.log("res", res)
         }).catch(error => {
-            console.log("error", error);
+            console.log("error", error)
         })
     },
     message() {
