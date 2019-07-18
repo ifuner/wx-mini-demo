@@ -8,8 +8,7 @@
     width: 100%;
     background: #fff url("https://g.baojiesports.com/bps/74a5f7e2d9e448d7bb0095957c5a88d1-750-1448.png") 0 0 repeat;
     background-attachment: fixed;
-    background-size: 100% 100%;
-    -webkit-background-size: 100% 100%;
+    background-size: cover;
     position: fixed;
     z-index: 0;
     top: 0;

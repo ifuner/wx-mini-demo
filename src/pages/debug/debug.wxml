@@ -29,14 +29,14 @@
     <i-panel title="右上角胶囊位置信息">
         <view style="padding:0 15px;">
             <i-cell-group>
-                <i-cell title="{{objKey}}" wx:for="{{customSize}}" wx:key="*this" wx:for-index="objKey" value="{{item}}"></i-cell>
+                <i-cell title="{{objKey}}" wx:for="{{customSize}}" wx:key="{{objKey}}" wx:for-index="objKey" value="{{item}}"></i-cell>
             </i-cell-group>
         </view>
     </i-panel>
     <i-panel title="当前用户设备信息">
         <view style="padding:0 15px;">
             <i-cell-group>
-                <i-cell title="{{objKey}}" wx:for="{{currentUserAgentInfo}}" wx:key="*this" wx:for-index="objKey" value="{{item}}"></i-cell>
+                <i-cell title="{{objKey}}" wx:for="{{currentUserAgentInfo}}" wx:key="{{objKey}}" wx:for-index="objKey" value="{{item}}"></i-cell>
             </i-cell-group>
         </view>
     </i-panel>
