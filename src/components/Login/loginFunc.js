@@ -25,6 +25,7 @@ function handlerLoginSuccess(resolve, res) {
     if (res.code) {
         Http.setToken(res.code);
         store.data.mpLoginStatus = 0;
+        store.loginAccountByUniond(res.code)
         resolve({_result: 0, _desc: 'success', data: res.code, mpLoginStatus: 0});
     } else {
         handlerLoginFail(resolve, "错误了");
@@ -46,6 +47,10 @@ function handlerLoginSuccess(resolve, res) {
 export default function () {
     let mpLoginStatus = store.data.mpLoginStatus
     console.log("mpLoginStatus", mpLoginStatus);
+    const storageToken = store.getStorageJavaToken()
+    if (storageToken) {
+        return {mpLoginStatus: 0};
+    }
     switch (mpLoginStatus) {
         case 0:
             return {mpLoginStatus};

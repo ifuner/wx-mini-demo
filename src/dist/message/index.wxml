@@ -1,3 +1,3 @@
-<view class="i-class i-message i-message-{{type}} {{ visible ? 'i-message-show' : '' }}">
+<view class="i-class i-message i-message-{{type}} {{ visible ? 'i-message-show' : '' }}" style="top:{{customSize.top + customSize.height+customSafeDistanceSize}}px">
     {{ content }}
 </view>

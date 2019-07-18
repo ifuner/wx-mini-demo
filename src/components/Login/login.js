@@ -14,11 +14,8 @@ create({
     ready: function () {
         this.update()
         this.login();
-        this.store.getAgentInfo().then(res => {
-            console.log("res", res);
-            this.setData({
-                feedBackStatus: this.utils.canIUse("2.1.0", res.data.SDKVersion)
-            })
+        this.setData({
+            feedBackStatus: wx.canIUse("button.open-type.feedback")
         })
     },
     methods: {
@@ -57,7 +54,6 @@ create({
             }
         },
         emitLogin(data = {}) {
-            console.warn("emitLogin", data);
             this.triggerEvent("login", data);
         },
         getUserInfo(e) {
@@ -71,6 +67,7 @@ create({
         postApi(data) {
             return new Promise((resolve, reject) => {
                 this.store.loginAccountByUniond(data).then(res => {
+                    console.log("loginAccountByUniond", res);
                     if (res.success) {
                         this.store.data.loginInfo = res
                         this.update()

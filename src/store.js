@@ -6,14 +6,26 @@ export default {
         index: index.data,
         loginStorageKey: "baojiClubJavaToken",
         currentUserAgentInfo: {},
+        customSize: {},
         loginInfo: "",
         mpLoginStatus: -1,
         reTryLoginTimes: 0,
-        enterMiniParams:{},
+        enterMiniParams: {},
+        customSafeDistanceSize: 10,
         loginStart: false, // 是否重新登录过
     },
-    globalData: ["loginInfo"],
+    globalData: ["loginInfo", "currentUserAgentInfo"],
+    getRightButtonPostion() {
+        if (wx.getMenuButtonBoundingClientRect) {
+            let size = wx.getMenuButtonBoundingClientRect()
+            // 个别手机的异常情况
+            size.width = size.width > 200 ? 87 : size.width
+            size.height = size.height > 40 ? 32 : size.height
+            size.top = size.top === 0 ? 26 : size.top
 
+            this.data.customSize = size
+        }
+    },
     getAgentInfo(newGet = false) {
         console.time("getAgentInfo")
         return new Promise((resolve, reject) => {

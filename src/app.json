@@ -1,12 +1,22 @@
 {
   "pages": [
-    "pages/index/index"
+    "pages/index/index",
+    "pages/debug/debug"
   ],
+  "navigateToMiniProgramAppIdList": [
+    "wx67ed7f6a3fadef81"
+  ],
+  "usingComponents": {
+    "mt-login": "./components/Login/login",
+    "nav-bar": "./components/NavBar/NavBar"
+  },
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#38373c",
     "navigationBarTitleText": "暴鸡电竞俱乐部",
-    "navigationBarTextStyle": "white"
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTextStyle": "black",
+    "navigationStyle": "custom"
   },
   "sitemapLocation": "sitemap.json"
 }

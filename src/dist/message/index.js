@@ -1,3 +1,5 @@
+import store from "../../store"
+
 const default_data = {
     visible: false,
     content: "",
@@ -9,14 +11,15 @@ let timmer = null
 
 Component({
     externalClasses: ["i-class"],
-
     data: {
-        ...default_data
+        ...default_data,
+        customSafeDistanceSize: store.data.customSafeDistanceSize,
+        customSize: wx.getMenuButtonBoundingClientRect() || {},
     },
 
     methods: {
-        handleShow (options) {
-            const { type = "default", duration = 2 } = options
+        handleShow(options) {
+            const {type = "default", duration = 2} = options
 
             this.setData({
                 ...options,
@@ -36,7 +39,7 @@ Component({
             }
         },
 
-        handleHide () {
+        handleHide() {
             this.setData({
                 ...default_data
             })

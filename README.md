@@ -2,9 +2,6 @@
 
 > 开发时集成eslint，框架使用原生 + westore + iview weapp 部分ui样式组件
 
-> 说明一下下，这个只是初期搭建，并没有开始正式使用。产品老板一句话,气吐血!!!
-
-
 ### 自己修改appid 并关闭安全域名校验 运行一下就知道喽~
 
 ### 库插件
@@ -76,6 +73,11 @@ wxApi("fnName",params).then(res=>{}).catch(error=>{})
 #### 2 eslint/prettier 集成 cnpm run lint/fix
 
 #### 3 小程序全局状态库westore 和 登录解决方案
+
+#### 3 自定义顶部tabBar
+
+![自定义tabBat 示例1](https://g.baojiesports.com/bps/e597752ab5d04f7b9be3c3af29012776-1125-2436.png)
+![自定义tabBat 示例2](https://g.baojiesports.com/bps/c333dc4aebba4dd3a508fb10f8ed3eaa-1125-2436.png)
 
 ![小程序登录流程图](https://g.baojiesports.com/bps/b81e8750e4244cdcaa247f12a3f017fa-933-1184.png)
 

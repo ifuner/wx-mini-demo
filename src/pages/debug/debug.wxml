@@ -1,0 +1,65 @@
+<!-- 请不要删除这个-->
+<mt-login id="login" bindlogin="onLogin"/>
+<i-message id="message" />
+<nav-bar disDebug="true">
+<view>
+    <i-panel title="打开/关闭调试" hide-border="true">
+        <i-button bind:click="openDebug" type="success">打开调试</i-button>
+        <i-button bind:click="closeDebug" type="warning">关闭调试</i-button>
+    </i-panel>
+    <i-panel title="清除所有storage" hide-border="true">
+        <i-button bind:click="clearStorage" type="success">清除storage</i-button>
+    </i-panel>
+    <i-panel title="当前微信信息" hide-border="true">
+        <i-card title="{{wxUserInfo.nickName}}" extra="{{wxUserInfo.language&&(wxUserInfo.gender===1?'男':'女')}}"
+                thumb="{{wxUserInfo.avatarUrl}}">
+            <view slot="content">
+                <i-button wx:if="{{!autoGetUserInfoStatus}}" bind:getuserinfo="handleGetUserInfo" type="success" open-type="getUserInfo">手动授权</i-button>
+            </view>
+            <view slot="footer">{{wxUserInfo.language}} --- {{wxUserInfo.country}}-{{wxUserInfo.province}}-{{wxUserInfo.city}}</view>
+        </i-card>
+    </i-panel>
+    <i-panel title="当前应用账户信息">
+        <view style="padding:0 15px;">
+            <i-cell-group>
+                <i-cell title="appId" value="{{accountInfo.miniProgram.appId}}"></i-cell>
+            </i-cell-group>
+        </view>
+    </i-panel>
+    <i-panel title="右上角胶囊位置信息">
+        <view style="padding:0 15px;">
+            <i-cell-group>
+                <i-cell title="bottom" value="{{customSize.bottom}}"></i-cell>
+                <i-cell title="height" value="{{customSize.height}}"></i-cell>
+                <i-cell title="left" value="{{customSize.left}}"></i-cell>
+                <i-cell title="right" value="{{customSize.right}}"></i-cell>
+                <i-cell title="top" value="{{customSize.top}}"></i-cell>
+                <i-cell title="width" value="{{customSize.width}}"></i-cell>
+            </i-cell-group>
+        </view>
+    </i-panel>
+    <i-panel title="当前用户设备信息">
+        <view style="padding:0 15px;">
+            <i-cell-group>
+                <i-cell title="SDKVersion" value="{{currentUserAgentInfo.SDKVersion}}"></i-cell>
+                <i-cell title="batteryLevel" value="{{currentUserAgentInfo.batteryLevel}}"></i-cell>
+                <i-cell title="benchmarkLevel" value="{{currentUserAgentInfo.benchmarkLevel}}"></i-cell>
+                <i-cell title="brand" value="{{currentUserAgentInfo.brand}}"></i-cell>
+                <i-cell title="fontSizeSetting" value="{{currentUserAgentInfo.fontSizeSetting}}"></i-cell>
+                <i-cell title="language" value="{{currentUserAgentInfo.language}}"></i-cell>
+                <i-cell title="level" value="{{currentUserAgentInfo.level}}"></i-cell>
+                <i-cell title="model" value="{{currentUserAgentInfo.model}}"></i-cell>
+                <i-cell title="pixelRatio" value="{{currentUserAgentInfo.pixelRatio}}"></i-cell>
+                <i-cell title="platform" value="{{currentUserAgentInfo.platform}}"></i-cell>
+                <i-cell title="screenHeight" value="{{currentUserAgentInfo.screenHeight}}"></i-cell>
+                <i-cell title="screenWidth" value="{{currentUserAgentInfo.screenWidth}}"></i-cell>
+                <i-cell title="statusBarHeight" value="{{currentUserAgentInfo.statusBarHeight}}"></i-cell>
+                <i-cell title="system" value="{{currentUserAgentInfo.system}}"></i-cell>
+                <i-cell title="version" value="{{currentUserAgentInfo.version}}"></i-cell>
+                <i-cell title="windowHeight" value="{{currentUserAgentInfo.windowHeight}}"></i-cell>
+                <i-cell title="windowWidth" value="{{currentUserAgentInfo.windowWidth}}"></i-cell>
+            </i-cell-group>
+        </view>
+    </i-panel>
+</view>
+</nav-bar>

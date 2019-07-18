@@ -1,0 +1,93 @@
+/* 顶部要固定定位   标题要居中   自定义按钮和标题要和右边微信原生的胶囊上下对齐 */
+.container{
+    height: 100%;
+    position: relative;
+}
+.bg-mask{
+    height: 100%;
+    width: 100%;
+    background: #fff url("https://g.baojiesports.com/bps/74a5f7e2d9e448d7bb0095957c5a88d1-750-1448.png") 0 0 repeat;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+    -webkit-background-size: 100% 100%;
+    position: fixed;
+    z-index: 0;
+    top: 0;
+    left: 0;
+}
+
+.nav-wrap {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    color: #000;
+    z-index: 999;
+    /*background-color: red;*/
+}
+.empty{
+    width: 100%;
+    background-color: transparent;
+}
+/* 标题要居中 */
+.nav-title {
+    max-width: 300rpx;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 36rpx;
+    color: #2c2b2b;
+    font-weight: 600;
+}
+
+.nav-capsule {
+    margin-left: 17rpx;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    position: relative;
+}
+
+.navbar-line {
+    width: 1rpx;
+    height: 32rpx;
+    background-color: #e5e5e5;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+}
+.inner-box{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    border-radius: 75px;
+    border:1rpx solid #e5e5e5;
+    height: calc(100% - 2rpx);
+    box-sizing: border-box;
+    position: absolute;
+    background-color: rgba(255,255,255,.5);
+    left: 0;
+    top: 0;
+    overflow: hidden;
+}
+.back-pre, .back-home {
+    width: 50%;
+    height: 100%;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.inner-box .img-el{
+    width: 32rpx;
+    height: 32rpx;
+    display: block;
+}
+
+.content-container{
+    position: relative;
+}

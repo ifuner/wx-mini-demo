@@ -12,7 +12,6 @@
     "i-cell": "../../dist/cell/index",
     "i-panel": "../../dist/panel/index",
     "i-card": "../../dist/card/index",
-    "hello":"../../components/hello/hello",
-    "mt-login": "../../components/Login/login"
+    "hello":"../../components/hello/hello"
   }
 }

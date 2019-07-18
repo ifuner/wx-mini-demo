@@ -1,5 +1,6 @@
 import store from "../../store"
 import create from "../../utils/create"
+
 const {$Message, $Toast} = require("../../dist/base/index")
 const app = getApp()
 create(store, {
@@ -17,6 +18,11 @@ create(store, {
     onLogin(data) {
         this.update()
         console.warn("onLogin 初始化检查登录逻辑", data);
+        this.wxApi("getSavedFileList").then(res => {
+            console.log("res", res);
+        }).catch(error => {
+            console.log("error", error);
+        })
     },
     message() {
         $Message({
@@ -57,6 +63,11 @@ create(store, {
                 content: JSON.stringify(error),
                 type: "error"
             })
+        })
+    },
+    toDebug() {
+        wx.navigateTo({
+            url: "/pages/debug/debug"
         })
     },
     wxTestApi() {

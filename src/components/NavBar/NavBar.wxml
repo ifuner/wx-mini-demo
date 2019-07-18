@@ -1,0 +1,20 @@
+<view class="container">
+  <cover-view class='nav-wrap' style="padding-bottom: {{customSafeDistanceSize}}px;background-color: {{customNavConfig.bgColor}};">
+    <cover-view class="empty" bindtap='openDebug' style="height:{{customSize.top}}px;"></cover-view>
+    <cover-view class='nav-capsule' style="height: {{customSize.height}}px;">
+      <cover-view class="inner-box" style="width:{{customSize.width}}px;" wx:if='{{customNavConfig.showCapsule}}'>
+        <cover-view class='back-pre' bindtap='_navback'><cover-image class="img-el" src='/imgs/back.png' mode='aspectFill'></cover-image></cover-view>
+        <cover-view class='navbar-line'></cover-view>
+        <cover-view class='back-home' bindtap='_backhome'><cover-image class="img-el" src='/imgs/home.png' mode='aspectFill'></cover-image></cover-view>
+      </cover-view>
+      <cover-view class='nav-title' wx-if="{{!customNavConfig.disTitle}}">
+        {{customNavConfig.title}}
+      </cover-view>
+    </cover-view>
+
+  </cover-view>
+  <view class="bg-mask" wx:if="{{!disBackImg}}"></view>
+  <view wx:if="{{customSize.width}}" class="content-container" catchtap="initClickNum" style="padding-top: {{(customSize.height)+customSize.top+customSafeDistanceSize}}px;">
+      <slot></slot>
+  </view>
+</view>

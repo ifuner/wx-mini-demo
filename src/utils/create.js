@@ -2,8 +2,6 @@ import diff from "./diff"
 import util from "./util"
 import wxApi from "./wxApi"
 import $http from "./request"
-import store from "../store";
-
 let originData = null
 let globalStore = null
 let fnMapping = {}
@@ -38,6 +36,7 @@ export default function create(store, option) {
         walk(store.data)
         let tempQuery = {}
         const {scene} = store.data.enterMiniParams
+
         option.onLoad = function (e) {
             this.store = store
             this.wxApi = wxApi

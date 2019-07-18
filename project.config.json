@@ -37,7 +37,7 @@
 		"es6": true,
 		"enhance": false,
 		"postcss": true,
-		"minified": true,
+		"minified": false,
 		"newFeature": true,
 		"coverView": true,
 		"autoAudits": false,
@@ -52,7 +52,7 @@
 	},
 	"miniprogramRoot": "src/",
 	"compileType": "miniprogram",
-	"libVersion": "2.1.1",
+	"libVersion": "2.1.0",
 	"appid": "wxd50cdc9b0e852d4c",
 	"projectname": "baoji-club",
 	"isGameTourist": false,
@@ -87,8 +87,8 @@
 				},
 				{
 					"id": 1,
-					"name": "pages/index/index",
-					"pathName": "pages/index/index",
+					"name": "debug",
+					"pathName": "pages/debug/debug",
 					"query": "hello=fuck",
 					"scene": 1006
 				}
