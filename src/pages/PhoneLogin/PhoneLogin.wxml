@@ -1,0 +1,53 @@
+<!-- 请不要删除这个-->
+<nav-bar showCapsule="{{showCapsule}}" bgColor="{{bgColor}}" navTitle="{{navTitle}}" disBackImg="{{false}}">
+    <view class="phone-login-container">
+        <view class="logo"></view>
+        <view class="input-box">
+            <view class="search-box">
+                <view class="search-box-input">
+                    <input type="text" placeholder="请输入手机号"
+                           style="width: 90%;"
+                           class="input-el"
+                           placeholder-class="search-box-placeholder"
+                           maxlength="{{11}}"
+                           value="{{phoneNum}}"
+                           bindinput="phoneSubmit"
+                           bindconfirm="phoneSubmit"
+                           adjust-position="{{true}}"
+                           confirm-type="done"/>
+                    <button class="clear-btn" style="display: {{phoneNum?'block':'none'}}"
+                            bindtap="clearbtn"
+                            hover-class="btn-hover-scale-y-class">
+                    </button>
+                </view>
+            </view>
+            <view class="tips"></view>
+            <view class="search-box">
+                <view class="search-box-input">
+                    <input type="number" placeholder="请输入验证码"
+                           class="input-el"
+                           placeholder-class="search-box-placeholder"
+                           maxlength="{{6}}"
+                           value="{{codeNum}}"
+                           bindinput="codeSubmit"
+                           bindconfirm="codeSubmit"
+                           adjust-position="{{true}}"
+                           confirm-type="done"/>
+                </view>
+
+                <button class="get-code" disabled="{{code.status&&!phoneNum}}" hover-class="btn-hover-scale-y-class"
+                        bindtap="getCodeApi">{{code.text}}
+                </button>
+            </view>
+            <view class="tips"></view>
+        </view>
+        <view class="button-group">
+            <button class="share-btn" hover-class="btn-hover-class" open-type="getPhoneNumber"
+                    bindgetphonenumber="bindWxUserPhone">使用微信手机号码
+            </button>
+            <button class="chat-btn" hover-class="btn-hover-class" bindtap="bindUserPhone"
+                    disabled="{{!(codeNum&&phoneNum)}}">{{button.text}}
+            </button>
+        </view>
+    </view>
+</nav-bar>

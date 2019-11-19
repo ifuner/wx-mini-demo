@@ -8,10 +8,9 @@
 import create from "../../utils/create"
 // const app = getApp()
 const DEFAULT_CONFIG = {
-    title: "暴鸡电竞俱乐部",
     bgColor: "#fff",
     showCapsule: true,
-    disTitle: false,
+    disTitle: false
 }
 
 create({
@@ -28,12 +27,24 @@ create({
                 this.setValue({title: newVal})
             }
         },
+        capsuleType: {
+            type: String,
+            value: "white",
+        },
+        capsuleColor: {
+            type: String,
+            value: "white",
+        },
         bgColor: {
             type: String,
             value: "",
             observer: function (newVal, oldVal) {
                 this.setValue({bgColor: newVal})
             }
+        },
+        textColor: {
+            type: String,
+            value: "#fff",
         },
         disTitle: {
             type: [Boolean, String],
@@ -43,7 +54,6 @@ create({
                 if (typeof newVal === "string") {
                     newVal = newVal !== "false"
                 }
-                console.log("showCapsule", newVal, oldVal)
                 this.setValue({disTitle: newVal})
             }
         },
@@ -54,7 +64,6 @@ create({
                 if (typeof newVal === "string") {
                     newVal = newVal !== "false"
                 }
-                console.log("showCapsule", newVal, oldVal)
                 this.setValue({showCapsule: newVal})
             }
         },
@@ -66,6 +75,10 @@ create({
         disBackImg: {
             type: Boolean,
             value: true
+        },
+        bgType: {
+            type: String,
+            value: "bg-1"
         }
     },
     data: {
@@ -73,33 +86,72 @@ create({
         customSafeDistanceSize: 0,
         customSize: {},
         customNavConfig: DEFAULT_CONFIG,
+        currentUserAgentInfo: {},
+        supportShowBar: true,
+        mtDoorStatus: false,
         //默认值  默认显示左上角
         showNavBar: wx.canIUse("button.open-type.feedback")
     },
     ready: function () {
         this.update()
         this.bindClickTimes = 0
+        // 低版本不支持自定义tabBar的情况
+        const canUse = this.utils.compareVersion("6.6.0", this.store.data.currentUserAgentInfo.version || "7.0.0")
+        !canUse && this.setData({
+            supportShowBar: canUse
+        })
         console.log("NavBar.this.store.data", this.store.data)
+    },
+    moved() {
+        this.initClickNum()
+    },
+    detached() {
+        this.initClickNum()
     },
     methods: {
         // 返回上一页面
         _navback() {
             this.bindClickTimes = 0
-            wx.navigateBack()
+            const current = getCurrentPages().length === 1
+            if (current) {
+                this._backhome()
+                return false
+            }
+            this.wxApi("navigateBack").then(() => {
+                this.needLoginStatus()
+            }).catch(() => {
+                console.log("_navback.fail")
+                this._backhome()
+            })
+        },
+        needLoginStatus() {
+            if (this.store.data.needLogin) {
+                this.update({
+                    needLogin: false
+                })
+            }
         },
         //返回到首页
         _backhome() {
             this.bindClickTimes = 0
-            wx.redirectTo({
-                url: "/pages/index/index",
-            })
+            this.needLoginStatus()
+            this.wxApi("switchTab", {url: "/pages/index/index"})
         },
         initClickNum() {
             this.bindClickTimes = 0
+            this.setData({
+                mtDoorStatus: false
+            })
         },
         setValue(newVal) {
             this.setData({
                 customNavConfig: Object.assign({}, this.data.customNavConfig, newVal)
+            })
+        },
+        scrollTop() {
+            wx.pageScrollTo({
+                scrollTop: 0,
+                duration: 300
             })
         },
         openDebug() {
@@ -109,10 +161,14 @@ create({
                 this.bindClickTimes ? this.bindClickTimes += 1 : this.bindClickTimes = 1
                 console.log("this.bindClickTimes", this.bindClickTimes)
                 if (this.bindClickTimes >= 15) {
-                    wx.navigateTo({
-                        url: "/pages/debug/debug"
-                    })
+                    this.bindClickTimes = 0
+                    this.selectComponent("#mtDoor").showModal()
                 }
+
+                this.bindClickTimes > 6 && this.setData({
+                    mtDoorStatus: true
+                })
+
             } else {
                 console.warn("页面禁止了打开调试~")
             }

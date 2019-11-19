@@ -1,7 +1,16 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/debug/debug"
+    "pages/PhoneLogin/PhoneLogin",
+    "pages/my/my"
+  ],
+  "subpackages": [
+    {
+      "root": "packagesA",
+      "pages": [
+        "pages/debug/debug"
+      ]
+    }
   ],
   "navigateToMiniProgramAppIdList": [
     "wx67ed7f6a3fadef81"
@@ -10,12 +19,36 @@
     "mt-login": "./components/Login/login",
     "nav-bar": "./components/NavBar/NavBar"
   },
+  "tabBar": {
+    "color": "#828282",
+    "selectedColor": "#53EDFF",
+    "backgroundColor": "#181818",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "imgs/icon_club_normal.png",
+        "selectedIconPath": "imgs/icon_club_selected.png",
+        "text": "俱乐部"
+      },
+      {
+        "pagePath": "pages/my/my",
+        "iconPath": "imgs/icon_mine_normal.png",
+        "selectedIconPath": "imgs/icon_mine_selected.png",
+        "text": "我的"
+      }
+    ]
+  },
+  "networkTimeout": {
+    "request": 10000
+  },
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#38373c",
-    "navigationBarTitleText": "暴鸡电竞俱乐部",
+    "backgroundColor": "#181818",
+    "onReachBottomDistance": 50,
     "navigationBarBackgroundColor": "#ffffff",
-    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "不知名的项目",
+    "navigationBarTextStyle": "white",
     "navigationStyle": "custom"
   },
   "sitemapLocation": "sitemap.json"

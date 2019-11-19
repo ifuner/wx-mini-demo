@@ -1,6 +1,6 @@
 ## xxx 小程序项目
 
-> 开发时集成eslint，框架使用原生 + westore + iview weapp 部分ui样式组件
+> 开发时集成eslint，框架使用原生 + westore + iview weapp 部分ui样式组件,代码去除了真实的请求地址，部分配置和页面。方便大家学习交流
 
 ### 自己修改appid 并关闭安全域名校验 运行一下就知道喽~
 
@@ -66,6 +66,10 @@ wxApi("fnName",params).then(res=>{}).catch(error=>{})
     
 ```
 
+### 彩蛋
+
+> 点击topbar 15下可弹出暗门操作，方面调试定位
+
 ### 功能点
 
 #### 1 快速新建组件/pages模板 命令：cnpm/npm run page 并且可以顺便给你app.json 中添加了这个路由
@@ -78,8 +82,13 @@ wxApi("fnName",params).then(res=>{}).catch(error=>{})
 
 #### 4 自定义顶部tabBar
 
-<img src="https://g.baojiesports.com/bps/ecde0cdefca546aa8969d62c3bd425b8-1125-2436.png" width="200">
-<img src="https://g.baojiesports.com/bps/c333dc4aebba4dd3a508fb10f8ed3eaa-1125-2436.png" width="200">
+<img src="https://g.baojiesports.com/bps/b6f2c5f6fe6444a88bcc1b153449ab2f-1125-2436.png" width="200">
+<img src="https://g.baojiesports.com/bps/18e744605e084d7bbe1c221c6bf95412-1125-2436.png" width="200">
 
+#### 5 海报图分享
+<img src="https://g.baojiesports.com/bps/0923bf9e79904cc6955daf92638b996e-1125-2436.png" width="200">
 
+#### 5.全局按需登录的组件
+<img src="https://g.baojiesports.com/bps/9b049f1809784862ace5b58e538cd232-1125-2436.png" width="200">
+<img src="https://g.baojiesports.com/bps/f2a15e77df9a40b8b7b4a0a6f741ad89-1125-2436.png" width="200">
 

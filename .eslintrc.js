@@ -90,5 +90,6 @@ module.exports = {
         "Component": true,
         "Component": true,
         "App": true,
+        "define": true,
     }
 }

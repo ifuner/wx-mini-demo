@@ -13,7 +13,7 @@ create({
      */
     properties: {},
     data: {
-        index: {}
+
     },
     ready: function () {
         // console.log("this.store",this.store)

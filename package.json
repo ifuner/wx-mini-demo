@@ -1,7 +1,7 @@
 {
-  "name": "baoji-club",
+  "name": "hello-world",
   "version": "1.0.0",
-  "description": "暴鸡电竞俱乐部",
+  "description": "不知名的项目",
   "main": ".eslintrc.js",
   "scripts": {
     "lint": "eslint --ext .js, ./src",

@@ -1,17 +1,44 @@
 import store from "./store"
-import loginFunc from "./components/Login/loginFunc"
-// 获取缓存中得token
-store.getStorageJavaToken()
-// 获取设备信息
-store.getAgentInfo()
-loginFunc()
+
+const loginFn = require("./components/Login/loginNewFunc")
+
 App({
     onLaunch: function (data) {
         store.data.enterMiniParams = data || {}
-        console.log("store.data.enterMiniParams", store.data.enterMiniParams)
+        // 获取缓存中得token
+        store.initStorageData()
+        // 获取设备信息
+        store.getAgentInfo()
+        // 获取缓存token
+        store.getStorageJavaToken()
+        // 外部传的token进来，可以免登录
+        this.setLoginToken(data)
         // 获取胶囊的位置信息
         store.getRightButtonPostion()
+
+        store.onChange = function () {
+            store.autoSaveToStorage()
+        }
+        this.onMemoryWarning()
         this.updateApp()
+    },
+    setLoginToken(data) {
+        const {loginToken = ""} = (data.referrerInfo && data.referrerInfo.extraData) || {}
+        loginToken && loginFn.loginSuccess(loginToken)
+    },
+    // 全局错误捕捉
+    onError(target) {
+        console.log("onError", target)
+    },
+    // 页面找不到捕捉
+    onPageNotFound(target) {
+        console.log("onPageNotFound", target)
+    },
+    onMemoryWarning() {
+        console.log("内存监听")
+        wx.onMemoryWarning((res) => {
+            console.error("内存告警", res)
+        })
     },
     // 更新App
     updateApp() {
@@ -39,7 +66,9 @@ App({
     },
     globalData: {
         userInfo: null,
-        cancleRequest: false
+        cancleRequest: false,
+        userMsgPoster: {},
+        shareImg:{},
     }
 })
 

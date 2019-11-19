@@ -1,0 +1,21 @@
+<!-- 游戏筛选 -->
+<scroll-view scroll-x class="scroll-view-container" scroll-with-animation="{{true}}"
+             scroll-into-view="{{gameInto}}">
+    <view class="game-scorll">
+        <view id="gameId-{{item.code}}" class="game-box-li {{gameActive===item.code?'active':''}}"
+              bindtap="handelClickGame"
+              data-value="{{item.code}}" wx:for="{{EnumsListData.games}}" wx:key="{{item.code}}">
+            {{item.name}}
+        </view>
+    </view>
+</scroll-view>
+<scroll-view scroll-x class="scroll-view-container scroll-border" wx:if="{{showRoleTab}}">
+    <view class="game-scorll">
+        <view class="game-box-li {{roleActive===item.type?'active':''}}"
+              bindtap="handelClickRole"
+              data-value="{{item.type}}"
+              wx:for="{{EnumsListData.baojiType}}"
+              wx:key="{{item.type}}">{{item.name}}
+        </view>
+    </view>
+</scroll-view>

@@ -1,0 +1,30 @@
+@import "../../pages/PhoneLogin/common.wxss";
+.button-group .share-btn,.button-group .chat-btn{
+    line-height: 90rpx;
+    text-align: center;
+    font-size:28rpx;
+    color:rgba(24,24,24,1);
+    background-size: cover;
+    width: 329rpx;
+    font-weight:600;
+    height: 100%;
+}
+.door-container {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+    background-color: rgba(0, 0, 0, 1);
+    padding: 40rpx;
+    box-sizing: border-box;
+    padding-top: 20%;
+}
+
+.center-slogan{
+    text-align: center;
+    font-size: 30rpx;
+    line-height: 50rpx;
+    min-height:50rpx;
+}

@@ -1,0 +1,5 @@
+<template name="qr-code">
+    <canvas class="hide-canvas" style="width:{{800}}px; height:{{800}}px;"
+            canvas-id="qrcode">
+    </canvas>
+</template>

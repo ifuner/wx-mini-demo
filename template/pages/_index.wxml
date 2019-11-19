@@ -1,5 +1,7 @@
 <!-- 请不要删除这个-->
 <mt-login id="login" bindlogin="onLogin"/>
-<view>
-  create-page-name
-</view>
+<nav-bar showCapsule="true" bgColor="transparent" navTitle="create-page-name" disBackImg="{{false}}">
+    <view>
+
+    </view>
+</nav-bar>

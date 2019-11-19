@@ -1,5 +1,5 @@
 /**
- * ifuner 制作 @18658226071@163.com
+ * ifuner 制作 757148586@qq.com
  */
 
 const chalk = require("chalk")

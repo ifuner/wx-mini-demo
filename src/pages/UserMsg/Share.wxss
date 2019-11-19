@@ -1,0 +1,107 @@
+.share-container{
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    background:rgba(0,0,0,0.7);
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+}
+button::after{
+    border-radius: 0;
+    border:none;
+    transform: scale(1);
+}
+.close-btn{
+    width:64rpx;
+    height:64rpx;
+    border-radius:32rpx;
+    position: fixed;
+    z-index: 100000000;
+    left: 34rpx;
+    top: 102rpx;
+}
+.close-btn-icon{
+    width: 100%;
+    height: 100%;
+}
+.canvas-area{
+    height:1067rpx;
+    background:rgba(255,255,255,1);
+    width: 600rpx;
+    position: absolute;
+    left: 50%;
+    top: 219rpx;
+    transform: translateX(-50%);
+}
+.bottom-button{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 190rpx;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+}
+.bottom-button .line{
+    width:2rpx;
+    height:40rpx;
+    background:rgba(216,216,216,1);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+}
+.bottom-button .btn-li{
+    width: 50%;
+    font-size:24rpx;
+    font-weight:400;
+    color:rgba(24,24,24,1);
+    line-height:33rpx;
+    border-radius: 0;
+}
+
+.btn-share-class{
+    background-color: rgba(0,0,0,.1);
+}
+
+.bottom-button .btn-li::before{
+    content:"";
+    background: url("https://g.baojiesports.com/bps/544f757ba4da46c4a41771333ddd0f7c-48-48.png") center center no-repeat;
+    display: block;
+    width:  48rpx;
+    height: 48rpx;
+    background-size: cover;
+    margin:49rpx auto 12rpx;
+}
+
+.bottom-button .wx-card::before{
+    content:"";
+    background: url("https://g.baojiesports.com/bps/2b2bd38de31941a6a3ca2f38f563b355-48-48.png") center center no-repeat;
+    background-size: cover;
+}
+.img-container{
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0 100rpx 0;
+    height: 65vh;
+    position: absolute;
+    z-index: 100000;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.canvas-img{
+    background-color: #fff;
+    width: auto;
+    height: auto;
+    margin: 0 auto;
+    border-radius:8rpx;
+}

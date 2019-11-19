@@ -1,0 +1,3 @@
+<view class="rate-container" wx:if="{{rateArr.length}}">
+  <view class="box-star {{item}}" wx:key="{{index}}" wx:for="{{rateArr}}"></view>
+</view>

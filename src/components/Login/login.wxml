@@ -1,14 +1,18 @@
-<view class="pop-get-user {{!loginInfo && mpLoginStatus==2?'show-pop':''}}" catchtouchmove="false">
-    <view class="login-bg">
-        <view class="pop-logo" bindtap="gift"></view>
-    </view>
-    <view class="logo-tips">暴鸡电竞俱乐部申请获得以下权限</view>
-    <view class="line-login-bg"></view>
-    <view class="show-tips">获得你的公开信息（昵称/头像等）</view>
-    <!-- 拿取用户消息 -->
-    <button class="btn abo tada" open-type="getUserInfo" bindgetuserinfo="getUserInfo">
-        戳这授权
-    </button>
-    <button class="feedback-btn" wx:if="{{feedBackStatus}}" open-type="feedback">登录不上？反馈一波~</button>
-</view>
+<view class="login-container {{(!loginInfo && mpLoginStatus==2&&needLogin)?'show-pop':''}}"
+      style="padding-top:{{customSize.top + customSize.height+customSafeDistanceSize}}px"
+      catchtouchmove="disMove">
+    <!--<view class="login-container show-pop" style="padding-top:{{customSize.top + customSize.height+customSafeDistanceSize}}px" catchtouchmove="false">-->
+    <view class="logo {{loginHover}}" bindtap="gift"></view>
+    <view class="logo-text {{loginTextHover}}" bindtap="textHover"></view>
 
+    <view class="button-group">
+        <button class="share-btn" hover-class="btn-hover-class" open-type="getUserInfo"
+                bindgetuserinfo="toLoginByPhone">使用手机号登录
+        </button>
+        <button class="chat-btn" hover-class="btn-hover-class" open-type="getUserInfo" bindgetuserinfo="getUserInfo">
+            微信快捷登录
+        </button>
+    </view>
+
+    <view class="phone-login" bindtap="notLoginNow">暂不登录</view>
+</view>

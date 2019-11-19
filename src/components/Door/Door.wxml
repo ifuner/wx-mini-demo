@@ -1,0 +1,23 @@
+<view class="door-container" wx:if="{{showModal}}">
+  <view class="logo"></view>
+  <view class="tips center-slogan">欢迎进入隐藏空间</view>
+  <view class="input-box">
+    <view class="search-box">
+      <view class="search-box-input">
+      <input type="text" placeholder="请输入进入隐藏空间的密码"
+             class="input-el"
+             placeholder-class="search-box-placeholder"
+             value="{{password}}"
+             bindinput="passWordSubmit"
+             bindconfirm="passWordSubmit"
+             adjust-position="{{true}}"
+             confirm-type="done"/>
+      </view>
+    </view>
+    <view class="tips">666，这都被你发现了~</view>
+  </view>
+  <view class="button-group">
+    <button class="share-btn" hover-class="btn-hover-class" bindtap="closeDebug">退出界面</button>
+    <button class="chat-btn" hover-class="btn-hover-class" bindtap="toDebugPages">打开神秘大门</button>
+  </view>
+</view>

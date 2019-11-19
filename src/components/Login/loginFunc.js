@@ -1,71 +1,80 @@
 /**
- * ifuner 制作 @18658226071@163.com
+ * ifuner 制作 757148586@qq.com
  *  0 登录成功 1 正在登录 2 登录失败
  */
 
 "use strict"
-import Http from "../../utils/request"
-import wxApi from "../../utils/wxApi"
 import store from "../../store"
+import loginFn from "./loginNewFunc"
+// import wxApi from "../../utils/wxApi"
 
-let mpLoginPromise = null
-
-function handlerLoginFail(resolve, msg) {
-    store.data.mpLoginStatus = 2
-    resolve({_result: 1, _desc: msg, mpLoginStatus: 2})
-}
-
-function handlerLoginSuccess(resolve, res) {
-    if (!res.code) {
-        handlerLoginFail(resolve, res.errMsg || "res.code is empty")
-        return
-    }
-
-    //与业务服务器换取token并且保存下来,需要自行修改
-    if (res.code) {
-        Http.setToken(res.code)
-        store.data.mpLoginStatus = 0
-        store.loginAccountByUniond(res.code)
-        resolve({_result: 0, _desc: "success", data: res.code, mpLoginStatus: 0})
+const utils = require("../../utils/util")
+const loginFunc = require("./loginNewFunc")
+const loginSuccess = (token, resolve, reject) => {
+    if (token && utils.isString(token)) {
+        loginFunc.loginSuccess(token)
+        resolve && resolve()
     } else {
-        handlerLoginFail(resolve, "错误了")
+        utils.message({
+            content: "token 不能为空",
+            type: "error"
+        })
+        reject && reject()
     }
-    // Http.get({url: '/api/user/mpLogin', data: {code: res.code}}).then((resp) => {
-    //     if (resp._result === 0) {
-    //         Http.setToken(resp.token);
-    //         mpLoginStatus = 0;
-    //         resolve({_result: 0, _desc: 'success', mpLoginStatus: 0});
-    //     } else {
-    //         handlerLoginFail(resolve, resp.msg);
-    //     }
-    // }).catch(error=>{
-    //     handlerLoginFail(resolve, resp._desc);
-    // })
-
 }
-
 export default function () {
-    let mpLoginStatus = store.data.mpLoginStatus
-    console.log("mpLoginStatus", mpLoginStatus)
-    const storageToken = store.getStorageJavaToken()
-    if (storageToken) {
-        return {mpLoginStatus: 0}
-    }
-    switch (mpLoginStatus) {
-        case 0:
-            return {mpLoginStatus}
-        case 1:
-            return {mpLoginStatus, mpLoginPromise}
-        default:
-            store.data.mpLoginStatus = 1
-            console.log("wx.login 重新被调用")
-            mpLoginPromise = new Promise((resolve) => {
-                wxApi("login").then(res => {
-                    handlerLoginSuccess(resolve, res)
+    const loginToken = store.getStorageJavaToken()
+
+    if (loginToken && utils.isString(loginToken)) {
+        return new Promise((resolve) => {
+            loginFunc.loginSuccess(loginToken)
+            resolve({msg: "缓存token登录", data: loginToken, code: 0})
+        })
+    } else {
+        // wxApi("hideTabBar")
+        return new Promise((resolve, reject) => {
+            loginFunc.getWxCode().then(code => {
+                loginFunc.getUserByWxCode(code).then(getUserApiRes => {
+                    loginSuccess(getUserApiRes.data,
+                        () => resolve({msg: "用户通过code 登录成功", data: getUserApiRes.data, code: 0}),
+                        () => reject({msg: "getWxCode token 为空了", data: getUserApiRes, code: -1})
+                    )
                 }).catch(error => {
-                    handlerLoginFail(resolve, error.errMsg)
+                    console.log("code 不是老用户", error)
+                    Promise.all([loginFn.getWxCode(), loginFunc.wxGetUserInfoApi()]).then(userData => {
+                        const [codeData, userInfo] = userData
+                        loginFunc.wxLoginByWxUserInfo({code: codeData, ...userInfo}).then(res => {
+                            console.log("res.normal", res)
+                            loginSuccess(res.data,
+                                () => resolve({msg: "用户通过wx.getUserInfo 登录成功", data: res.data, code: 0}),
+                                () => reject({msg: "loginFunc.wxLoginByWxUserInfo token 为空了", data: res.data, code: -1})
+                            )
+                            //    如果时老用户就登录
+                        }).catch(userError => {
+                            if (userError.code === 202) {
+                                reject({msg: "用户通过wx.getUserInfo接口不是老用户", data: userError, code: -2})
+                                // loginFunc.toPhonePage({
+                                //     type: "bind",
+                                //     wxAuth: 1,
+                                //     backUrl: encodeURIComponent(utils.getCurrentPage())
+                                // }, "redirectTo")
+                            } else {
+                                utils.message({
+                                    content: `授权${userError.code}`,
+                                    type: "error"
+                                })
+                                reject({msg: "用户通过wx.getUserInfo 调用接口出错", data: userError, code: -1})
+                            }
+                            console.log("userError", userError)
+                        })
+                    }).catch(() => {
+                        reject({msg: "获取微信code 或者userinfo 出错", code: -1})
+                    })
                 })
+            }).catch(error => {
+                console.log("code 错误", error)
+                reject({msg: "获取微信code 出错", data: error, code: -1})
             })
-            return {mpLoginStatus, mpLoginPromise}
+        })
     }
 }

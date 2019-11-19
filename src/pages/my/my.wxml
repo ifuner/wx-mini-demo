@@ -1,0 +1,36 @@
+<!-- 请不要删除这个-->
+<mt-login id="login" bindlogin="onLogin"/>
+<nav-bar showCapsule="{{false}}" bgColor="{{bgColor}}" navTitle="" disBackImg="{{false}}">
+    <view class="my-container">
+        <image bindtap="previewImage" src="{{mineInfo.thumbnail||defaultUserImg}}"
+               class="user-img">
+        </image>
+        <view class="user-name ellipsis" wx:if="{{mineInfo.username}}">
+            {{mineInfo.username}}
+        </view>
+        <view class="user-name no-login-show"
+              wx:if="{{!loginInfo&&!mineInfo.chickenId}}"
+              bindtap="handleLogin">
+            点击登录账户
+        </view>
+        <view class="user-desc" wx:if="{{mineInfo.chickenId}}" bindtap="copyId">暴鸡ID：{{mineInfo.chickenId}}</view>
+        <view class="line"></view>
+        <view class="list-nav">
+            <button class="order" hover-class="btn-nav-hover-class">我的订单</button>
+            <button class="order-complain" hover-class="btn-nav-hover-class">订单投诉</button>
+            <button wx:if="{{feedBackStatus}}"
+                    class="feedback"
+                    open-type="feedback"
+                    hover-class="btn-nav-hover-class">意见反馈
+            </button>
+            <button
+                    class="online"
+                    open-type="contact"
+                    session-from="sobot|{{mineInfo.username||'小程序用户'}}|{{mineInfo.thumbnail||defaultUserImg}}"
+                    hover-class="btn-nav-hover-class">在线客服
+            </button>
+
+        </view>
+        <view class="fixed-tips">{{version}}</view>
+    </view>
+</nav-bar>

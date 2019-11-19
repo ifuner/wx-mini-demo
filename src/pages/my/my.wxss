@@ -1,0 +1,106 @@
+.my-container{
+    position: relative;
+    padding: 12rpx 40rpx;
+    box-sizing: border-box;
+}
+
+.user-img{
+    width:160rpx;
+    height:160rpx;
+    border:4rpx solid;
+    border-image:linear-gradient(360deg, rgba(56,235,255,0.17), rgba(5,185,255,1)) 1 1;
+    filter:blur(0px);
+    display: block;
+    margin: 0 auto;
+}
+.user-name{
+    min-height:56rpx;
+    font-size:40rpx;
+    font-weight:600;
+    color:rgba(249,249,249,1);
+    line-height:56rpx;
+    text-align: center;
+    margin-top: 30rpx;
+}
+.user-desc{
+    height:33rpx;
+    font-size:24rpx;
+    font-weight:400;
+    color:rgba(249,249,249,1);
+    line-height:33rpx;
+    text-align: center;
+    margin-top: 12rpx;
+}
+.line{
+    width: 100%;
+    display: block;
+    height:1rpx;
+    background:rgba(120,120,120,1);
+    margin-top: 60rpx;
+}
+.list-nav button{
+    height: 100rpx;
+    line-height: 100rpx;
+    font-size:28rpx;
+    font-weight:500;
+    color:rgba(249,249,249,1);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: transparent;
+    margin: 0;
+    padding: 0;
+    padding-left: 68rpx;
+    transition: all .1s linear;
+}
+.btn-nav-hover-class{
+    opacity: .5;
+}
+
+.list-nav button::before{
+    content:"";
+    width: 48rpx;
+    height: 48rpx;
+    position: absolute;
+    left: 0;
+    background-size: cover!important;
+}
+.order::before{
+    background: url("https://g.baojiesports.com/bps/479ff7ad09ab4b6c9269d84ad90e8686-48-48.png") 0 0 no-repeat;
+}
+.order-complain::before{
+    background: url("https://g.baojiesports.com/bps/966d95e8e9ea4754b7737fbe01d56a5d-48-48.png") 0 0 no-repeat;
+}
+.feedback::before{
+    background: url("https://g.baojiesports.com/bps/bb35aa0a277745fb8eca7b864a1cf13f-48-48.png") 0 0 no-repeat;
+}
+.online::before{
+    background: url("https://g.baojiesports.com/bps/9c3e397107dc45f2b5f9e61418d7f2a8-48-48.png") 0 0 no-repeat;
+}
+
+.list-nav button::after{
+    content:"";
+    width: 36rpx;
+    height: 36rpx;
+    position: relative;
+    background: url("https://g.baojiesports.com/bps/239c3eb064084c81af391870b4769fac-36-36.png") 0 0 no-repeat;
+    background-size: cover;
+    transform:scale(1) translate(0,0);
+    border:none;
+    padding: 0;
+    margin: 0;
+    border-radius: 0;
+}
+
+
+.fixed-tips{
+    font-size:24rpx;
+    font-weight:500;
+    color:rgba(49,126,252,1);
+    line-height:33rpx;
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 82rpx;
+}

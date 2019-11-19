@@ -1,138 +1,187 @@
-.pop-get-user {
+.login-container {
   position: fixed;
   left: 0;
   top: 0;
   width: 100%;
   height: 100%;
-  z-index: 1000000;
+  z-index: 100;
   overflow: hidden;
-  background-color: #fff;
+  background: #171716 url("https://g.baojiesports.com/bps/4c857527dceb4216925bae9b0cac083c-750-1583.png") center top no-repeat;
+  background-size: cover;
   display: none;
 }
-.pop-get-user.show-pop {
+.login-container.show-pop {
   display: block;
 }
-.pop-get-user .login-bg {
-  width: calc(100% + 1px);
-  height: 364rpx;
-  background: url("https://g.baojiesports.com/bps/99616c344e724a50bc9bfbc6f714758d-1125-549.png") center center no-repeat;
+.login-container .logo{
+  background: url("https://g.baojiesports.com/bps/03583456975f4b509184e88b909c1b0d-220-220.png") 0 0 no-repeat;
   background-size: cover;
-  position: relative;
+  width: 220rpx;
+  height:220rpx;
+  margin: 151rpx auto 0;
 }
-.pop-get-user .pop-logo {
-  background: url("https://g.baojiesports.com/bps/cc7015df7b14447192ac1b99ace432e3-105-105.png") 0 0 no-repeat;
+
+.login-logo-hover{
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  animation-name: bounceInDown;
+}
+.login-text-hover{
+  animation-duration: 2s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  animation-name: bounceInLeft;
+}
+
+.login-container .logo-text{
+  background: url("https://g.baojiesports.com/bps/b44e3070a31f4369954e5a67933cb6b0-600-326.png") 0 0 no-repeat;
   background-size: cover;
-  width: 140rpx;
-  height: 140rpx;
-  display: block;
-  position: absolute;
-  bottom: -70rpx;
-  left: 50%;
-  margin-left: -70rpx;
+  width:600rpx;
+  height:326rpx;
+  margin: 0 auto;
 }
-.feedback-btn {
+
+.bottom-area{
+  width: 100%;
   position: fixed;
-  width: 100%;
-  color: #ccc;
-  background-color: #fff;
-  text-align: center;
-  font-size: 24rpx;
-  background-color: transparent;
+
   left: 50%;
-  border: 0!important;
   transform: translateX(-50%);
-  bottom: 30rpx;
-}
-.feedback-btn::after {
-  border: none;
-}
-.pop-get-user .pop-show {
-  width: 540rpx;
-  min-height: 353rpx;
-  background-color: #fff;
-  border-radius: 26rpx;
-  position: relative;
-}
-.line-login-bg {
-  height: 2rpx;
-  width: 600rpx;
-  background-color: #E1E1E1;
-  margin: 34rpx auto;
-}
-.pop-get-user .logo-tips {
-  font-size: 30rpx;
-  color: #4A4A4A;
   text-align: center;
+}
+
+.button-group{
   width: 100%;
-  line-height: 26rpx;
-  font-weight: 600;
-  margin-top: 160rpx;
-}
-.pop-get-user .show-tips {
-  text-align: center;
-  width: 100%;
-  display: block;
-  margin: 36rpx auto 0;
-  font-size: 24rpx;
-  color: #9B9B9B;
-}
-.pop-get-user .btn {
-  height: 84rpx;
-  line-height: 84rpx;
-  width: 368rpx;
-  border: none;
-  text-align: center;
-  background-image: linear-gradient(-90deg, #FF2741 0%, #FD216F 100%);
-  border-radius: 200rpx;
-  font-size: 32rpx;
-  color: #fff;
-}
-.pop-get-user .abo {
-  margin: 123rpx auto 0;
-}
-.pop-get-user .btn::after {
-  border: none;
-}
-/* 弹出框 */
-.pass {
-  width: 100%;
+  height: 90rpx;
+  bottom: 182rpx;
+  position: fixed;
+  z-index: 100;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
   justify-content: center;
-  flex-wrap: wrap;
-  align-items: center;
-  margin: 30rpx auto;
+
 }
-.password {
-  width: 80%;
-  height: 60rpx;
-  line-height: 60rpx;
-  padding: 0 15rpx;
-  font-size: 24rpx;
-  border-radius: 10rpx;
-  border: 2rpx solid #ccc;
+.button-group button::after{
+  border:none;
+  transform: scale(1);
+  border-radius: 0;
 }
-.pop-choose-list-container {
-  width: 100%;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  margin-top: 20px;
+.share-btn{
+  background: url("https://g.baojiesports.com/bps/6cd433a59a174e5eb750c726a6f01c96-329-90.png") center center no-repeat;
 }
-.pop-choose-list {
-  border: 2rpx solid #ccc;
-  background-color: #fff;
-  border-radius: 200rpx;
-  width: 100rpx;
-  line-height: 64rpx;
-  font-size: 28rpx;
+.chat-btn{
+  background: url("https://g.baojiesports.com/bps/c79233b92c904b2e85071b15c3a03262-329-90.png") center center no-repeat;
+}
+.button-group button{
+  line-height: 90rpx;
   text-align: center;
-  color: #666;
+  font-size:32rpx;
+  color:rgba(24,24,24,1);
+  background-size: cover;
+  width: 329rpx;
+  font-weight:600;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  border-radius: 0;
 }
-.pop-choose-list.active {
-  color: #fff;
-  border: 2rpx solid #FF2741;
-  background-color: #FF2741;
+.btn-hover-class {
+  transform: scale(.9)!important;
 }
-.tada {
-  animation: tada 1s both 2;
+.login-btn::after,.login-container .logo::after{
+  transform: scale(1);
+  border:none;
+  border-radius: 0;
+}
+.phone-login {
+  font-size:28rpx;
+  font-weight:400;
+  color:rgba(83,237,255,1);
+  line-height:40rpx;
+  bottom: 90rpx;
+  position: fixed;
+  z-index: 100;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: transparent;
+}
+
+@keyframes bounceInDown {
+
+  from,
+  60%,
+  75%,
+  90%,
+  to {
+    -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -3000px, 0);
+    transform: translate3d(0, -3000px, 0);
+  }
+
+  60% {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 25px, 0);
+    transform: translate3d(0, 25px, 0);
+  }
+
+  75% {
+    -webkit-transform: translate3d(0, -10px, 0);
+    transform: translate3d(0, -10px, 0);
+  }
+
+  90% {
+    -webkit-transform: translate3d(0, 5px, 0);
+    transform: translate3d(0, 5px, 0);
+  }
+
+  to {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes bounceInLeft {
+  from,
+  60%,
+  75%,
+  90%,
+  to {
+    -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(-3000px, 0, 0);
+    transform: translate3d(-3000px, 0, 0);
+  }
+
+  60% {
+    opacity: 1;
+    -webkit-transform: translate3d(25px, 0, 0);
+    transform: translate3d(25px, 0, 0);
+  }
+
+  75% {
+    -webkit-transform: translate3d(-10px, 0, 0);
+    transform: translate3d(-10px, 0, 0);
+  }
+
+  90% {
+    -webkit-transform: translate3d(5px, 0, 0);
+    transform: translate3d(5px, 0, 0);
+  }
+
+  to {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
 }

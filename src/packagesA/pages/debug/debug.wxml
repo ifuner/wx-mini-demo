@@ -1,0 +1,159 @@
+<!-- 请不要删除这个-->
+
+<wxs module="parse">
+    module.exports = {
+    getStringKey: function(arr) {
+    return arr.toString()
+    }
+    }
+</wxs>
+<nav-bar disDebug="true" showCapsule="{{true}}">
+    <i-panel title="打开pages">
+        <view class="pd-container">
+            <input type="text" placeholder="打开页面的参数 like:hello&world"
+                   class="search-box-input"
+                   bindinput="setQueryData"
+                   placeholder-class="search-box-placeholder"
+                   maxlength="30"
+                   value="{{queryData}}"
+                   adjust-position="{{true}}"
+                   confirm-type="search"/>
+            <i-tabs current="{{ current }}" bindchange="handleChange">
+                <i-tab key="{{item}}" title="{{item}}" wx:for="{{targetType}}" wx:key="{{item}}">{{item}}</i-tab>
+            </i-tabs>
+            <input type="text" placeholder="需要打开pages like:pages/index/index"
+                   class="search-box-input"
+                   bindinput="setPagesData"
+                   value="{{pagesData}}"
+                   placeholder-class="search-box-placeholder"
+                   maxlength="30"
+                   adjust-position="{{true}}"
+                   confirm-type="search"/>
+            <i-button bind:click="handleTarget" type="success" shape="circle" size="small">点击进入页面</i-button>
+
+            <view class="router-list" wx:for="{{ALL_ROUTES}}" wx:key="{{objKey}}" data-value="{{item}}"
+                  bindtap="targetPages"
+                  wx:for-index="objKey">{{objKey}} : {{item}}
+            </view>
+        </view>
+    </i-panel>
+    <i-panel title="打开/关闭调试" hide-border="true">
+        <i-button bind:click="openDebug" type="success">打开调试</i-button>
+        <i-button bind:click="closeDebug" type="warning">关闭调试</i-button>
+    </i-panel>
+    <i-panel title="接口/环境地址切换" hide-border="true">
+        <view class="pd-container">
+            <input type="text" placeholder="http://192.168.2.9:9005"
+                   class="search-box-input"
+                   wx:if="{{currentEnv==='local'}}"
+                   bindinput="setLocalUrlData"
+                   placeholder-class="search-box-placeholder"
+                   value="{{localUrl}}"
+                   adjust-position="{{true}}"
+                   confirm-type="search"/>
+            <i-tabs current="{{ currentEnv }}" bindchange="handleChangeEnv">
+                <i-tab key="{{item}}" title="{{item}}" wx:for="{{targetEnv}}" wx:key="{{item}}"></i-tab>
+            </i-tabs>
+        </view>
+    </i-panel>
+    <i-panel title="缓存信息info" hide-border="true">
+        <i-card title="缓存信息" extra="{{storageInfo.limitSize}}/{{storageInfo.currentSize}}">
+            <view slot="content">
+                <i-collapse name="name2">
+                    <i-collapse-item title="keys: {{parse.getStringKey(storageInfo.keys)}}" name="name1">
+                        <view slot="content">
+                            <text selectable="{{true}}" bindtap="copyStorageData" class="text-container">
+                                {{storageData}}
+                            </text>
+                        </view>
+                    </i-collapse-item>
+                </i-collapse>
+            </view>
+            <view slot="footer">
+                <i-button bind:click="clearStorage" size="small" type="success">清除storage</i-button>
+                <i-button bind:click="clearToken" size="small" type="info">清除登录相关的信息</i-button>
+            </view>
+        </i-card>
+    </i-panel>
+    <i-panel title="当前微信信息" hide-border="true">
+        <i-card title="{{wxUserInfo.nickName}}" extra="{{wxUserInfo.language&&(wxUserInfo.gender===1?'男':'女')}}"
+                thumb="{{wxUserInfo.avatarUrl}}">
+            <view slot="content">
+                <i-button bind:getuserinfo="handleGetUserInfo" type="success"
+                          open-type="getUserInfo">手动授权微信用户信息
+                </i-button>
+                <i-collapse name="name2">
+                    <i-collapse-item title="查看用户授权数据" name="name1">
+                        <view slot="content">
+                            <text bindtap="copyText" selectable="{{true}}" class="text-container">
+                                code: {{wxCode}}
+
+                                rawData: {{wxSignData.rawData}}
+
+                                signature: {{wxSignData.signature}}
+
+                                iv: {{wxSignData.iv}}
+
+                                encryptedData: {{wxSignData.encryptedData}}
+                            </text>
+                        </view>
+                    </i-collapse-item>
+                </i-collapse>
+                <i-collapse name="name2">
+                    <i-collapse-item title="查看用户的手机号授权数据" name="name1">
+                        <view slot="content">
+                            <i-button bind:getphonenumber="handleGetPhoneInfo" type="success"
+                                      open-type="getPhoneNumber">手动授权拿取微信的手机号
+                            </i-button>
+                            <text bindtap="copyPhoneData" selectable="{{true}}" class="text-container">
+                                {{phoneData}}
+                            </text>
+                        </view>
+                    </i-collapse-item>
+                </i-collapse>
+            </view>
+            <view slot="footer">{{wxUserInfo.language}} ---
+                {{wxUserInfo.country}}-{{wxUserInfo.province}}-{{wxUserInfo.city}}
+            </view>
+        </i-card>
+    </i-panel>
+    <i-panel title="当前应用账户信息">
+        <view style="padding:0 15px;">
+            <i-cell-group>
+                <i-cell title="appId" value="{{accountInfo.miniProgram.appId}}"></i-cell>
+            </i-cell-group>
+        </view>
+    </i-panel>
+    <i-panel title="右上角胶囊位置信息">
+        <view style="padding:0 15px;">
+            <i-cell-group>
+                <i-cell title="{{objKey}}" wx:for="{{customSize}}" wx:key="{{objKey}}" wx:for-index="objKey"
+                        value="{{item}}"></i-cell>
+            </i-cell-group>
+        </view>
+    </i-panel>
+    <i-panel title="当前用户设备信息">
+        <view style="padding:0 15px;">
+            <i-cell-group>
+                <i-button bind:click="copyUserAgent" type="success">复制设备相关参数
+                </i-button>
+                <i-cell title="{{objKey}}" wx:for="{{currentUserAgentInfo}}" wx:key="{{objKey}}"
+                        wx:for-index="objKey" value="{{item}}"></i-cell>
+            </i-cell-group>
+        </view>
+    </i-panel>
+    <i-panel title="组件的二次封装">
+        <view style="padding:0 15px;">
+            <i-button bind:click="successMessage" type="success" shape="circle" size="small">success messgae
+            </i-button>
+            <i-button bind:click="errorMessage" type="success" shape="circle" size="small">error messgae
+            </i-button>
+            <i-button bind:click="loadingMessage" type="success" shape="circle" size="small">loading messgae
+            </i-button>
+            <i-button bind:click="notIconMessage" type="success" shape="circle" size="small">none icon
+            </i-button>
+        </view>
+    </i-panel>
+</nav-bar>
+
+

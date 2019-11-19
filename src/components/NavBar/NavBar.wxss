@@ -1,28 +1,47 @@
 /* 顶部要固定定位   标题要居中   自定义按钮和标题要和右边微信原生的胶囊上下对齐 */
-.container{
+.container {
     height: 100%;
     position: relative;
 }
+
 .bg-mask{
     height: 100%;
     width: 100%;
-    background: #fff url("https://g.baojiesports.com/bps/74a5f7e2d9e448d7bb0095957c5a88d1-750-1448.png") 0 0 repeat;
-    background-attachment: fixed;
-    background-size: cover;
     position: fixed;
     z-index: 0;
     top: 0;
+    bottom: 0;
     left: 0;
+    right: 0;
+    transform: translate3d(0, 0, 0);
 }
-
+.bg-mask.bg-1{
+    background: #171716 url("https://g.baojiesports.com/bps/4c857527dceb4216925bae9b0cac083c-750-1583.png") center top no-repeat;
+    background-size: cover;
+}
+.bg-mask.bg-2{
+    background: #171716 url("https://g.baojiesports.com/bps/28a186214e404ebb954f6a4da910304d-750-1624.png") center top no-repeat;
+    background-size: cover;
+}
 .nav-wrap {
     position: fixed;
     width: 100%;
     top: 0;
     color: #000;
     z-index: 999;
+    transition: background .3s ease-in-out;
+    background-size: 100%!important;
+    transform: translate3d(0,0,0);
     /*background-color: red;*/
+    transition: all .3s ease-in-out;
 }
+.nav-wrap.transparent{
+    background-color: transparent;
+}
+.nav-wrap.black{
+    background-color: rgba(0,0,0,.7);
+}
+
 .empty{
     width: 100%;
     background-color: transparent;
@@ -72,6 +91,13 @@
     left: 0;
     top: 0;
     overflow: hidden;
+}
+.inner-box.white{
+    border:1rpx solid rgba(255,255,255,.2);
+    background-color: rgba(0,0,0,.2);
+}
+.inner-box.white .navbar-line{
+    background-color: rgba(255,255,255,.2);
 }
 .back-pre, .back-home {
     width: 50%;

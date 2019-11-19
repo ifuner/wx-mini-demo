@@ -1,115 +1,100 @@
+/**
+ * @项目：index
+ * @创建人：ifuner
+ * @创建人邮箱：zhoupengfei@kaiheikeji.com
+ * @创建时间：2019-07-22 14:25:13
+ * */
+
 import store from "../../store"
 import create from "../../utils/create"
-
-const {$Message, $Toast} = require("../../dist/base/index")
-const app = getApp()
+// const app = getApp()
 create(store, {
     data: {
-        indexDemo: "hahah",
-        hello: null,
+        bgColor: "transparent",
+        clubIsFirstStatus: true,
         index: {},
-        privateNum: 0
+        myClubDeatil: {}
     },
-
-    onShow() {
-        console.log("index.onShow")
-    },
-
-    onLogin(data) {
+    onLoad: function (target) {
+        console.log("onload")
+        this.isloaded = true
         this.update()
-        console.warn("onLogin 初始化检查登录逻辑", data)
-        this.wxApi("getSavedFileList").then(res => {
-            console.log("res", res)
+    },
+    onShow() {
+        if (!this.isloaded) {
+            this.getClubData()
+        }
+    },
+    onHide() {
+        this.isloaded = false
+        console.log("onHide", this.isloaded)
+    },
+    onLogin(target = {}, reloadData) {
+        // 在这个事件里面调用初始化业务
+        this.getClubData()
+        const myClubData = this.store.data.clubData.myClub
+        if ((this.store.data.loginInfo && reloadData) || !(myClubData && myClubData.baojiData && myClubData.baojiData.length)) {
+            this.selectComponent("#myClub") && this.selectComponent("#myClub").onReload()
+        }
+    },
+    clearTimerOut() {
+        this.timmer && clearTimeout(this.timmer)
+        wx.stopPullDownRefresh()
+    },
+    onUnload() {
+        this.clearTimerOut()
+    },
+    onPullDownRefresh() {
+        this.wxApi("vibrateShort")
+        this.$Message({
+            content: "正在重新拉取数据...",
+            duration: 1500,
+            type: "none"
+        }).then(() => {
+            this.clearTimerOut()
+        })
+        this.onLogin({}, true)
+    },
+    onShareAppMessage(data) {
+        console.log("data", data)
+        console.log(this.$router.getPageString("OTHER_CLUB_PAGES"))
+        const {name, logoUrl, clubId = ""} = this.data.myClubDeatil
+        console.log("clubId", clubId)
+        console.log("logoUrl", logoUrl)
+        console.log("name", name)
+        const title = [
+            `我的「${name}」电竞俱乐部成立了，想找大神的都进来吧！`,
+            `来我的「${name}」俱乐部，找个大神带你，报我名字有折扣。`,
+            `上分吗？来我的「${name}」俱乐部，和大神一起开黑啦。`
+        ][parseInt(Math.random() * 3)]
+        return {
+            // imageUrl: logoUrl,
+            imageUrl: "https://g.baojiesports.com/bps/c8287d2578e84bb792dafa847f5210b7-1000-800.png",
+            title: title,
+            path: this.$router.getPageString("OTHER_CLUB_PAGES", {clubId})
+        }
+    },
+    onReachBottom() {
+        this.store.data.loginInfo && this.selectComponent("#myClub") && this.selectComponent("#myClub").onReachBottom()
+    },
+    getClubData() {
+        wx.hideShareMenu()
+        this.store.getClubData(true).then(res => {
+            this.update()
+            this.isCreateClubStatus(res.isCreate)
+            console.log("getClubData", res)
         }).catch(error => {
             console.log("error", error)
         })
     },
-    message() {
-        $Message({
-            content: "这是一条成功提醒",
-            type: "success"
-        })
+    handleLogin() {
+        // this.store.data.needLogin = true
+        this.selectComponent("#login").showLoginNow()
     },
-    toast() {
-        $Toast({
-            content: "成功的提示",
-            type: "success"
-        })
-    },
-    testWeStoreNum() {
-        let {num} = this.store.data.index
+    isCreateClubStatus(status = false) {
+        status && wx.showShareMenu()
         this.update({
-            [`index.num`]: ++num
-        })
-    },
-    privateNum() {
-        let {privateNum} = this.data
-        this.setData({
-            privateNum: ++privateNum
-        })
-    },
-    nativeToast() {
-        this.wxApi("showToast", {title: "hello"})
-    },
-    wxTest401Api() {
-        this.$http.get({
-            key: "GET_TEST2_HELLO",
-            p1: "hello",
-            p2: "world"
-        }).then(res => {
-            console.log("res", res)
-        }).catch(error => {
-            $Toast({
-                content: JSON.stringify(error),
-                type: "error"
-            })
-        })
-    },
-    toDebug() {
-        wx.navigateTo({
-            url: "/pages/debug/debug"
-        })
-    },
-    wxTestApi() {
-        this.$http.get("GET_TEST_HELLO", {header: {auth2: "hello"}}).then(res => {
-            console.log("res", res)
-            $Toast({
-                content: JSON.stringify(res.data),
-                type: "success"
-            })
-        }).catch(error => {
-            $Toast({
-                content: JSON.stringify(error),
-                type: "error"
-            })
-        })
-    },
-    wxTenApi() {
-        for (let i = 0; i < 20; i++) {
-            this.$http.get("GET_TEST_HELLO").then(res => {
-                console.log("res", res)
-            }).catch(error => {
-                console.log("error", error)
-            })
-        }
-    },
-    wxTenApiCopy() {
-        const allRequest = []
-        for (let i = 0; i < 20; i++) {
-            allRequest.push(this.$http.get("GET_TEST_HELLO"))
-        }
-        Promise.all(allRequest).then(res => {
-            console.log("res", res)
-            $Toast({
-                content: "20条数据请求完毕",
-                type: "success"
-            })
-        }).catch(error => {
-            console.log("error", error)
-            $Toast({
-                content: error,
-                type: "error"
-            })
+            ["index.bgType"]: status ? "bg-1" : "bg-2"
         })
     }
 })

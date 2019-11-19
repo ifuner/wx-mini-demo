@@ -1,43 +1,14 @@
-<!-- 用到时就引入 -->
-<i-message id="message"/>
-<i-toast id="toast"/>
+<!-- 请不要删除这个-->
 <mt-login id="login" bindlogin="onLogin"/>
-<nav-bar showCapsule="false" bgColor="transparent" disBackImg="{{false}}">
-    <view class="page-container">
-        <i-button bind:click="message" type="error" long="true">通用弹出层</i-button>
-        <i-divider lineColor="#f5f5f5"></i-divider>
-        <i-button bind:click="toast" type="success" long="true">通用toast</i-button>
-        <i-divider lineColor="#f5f5f5"></i-divider>
-        <i-button bind:click="toDebug" type="success" long="true">去debug页面</i-button>
-
-        <i-panel title="测试westore">
-            <i-button bind:click="testWeStoreNum" type="success" long="true">点击store计数 {{index.num}}</i-button>
-        </i-panel>
-        <i-panel title="私有状态">
-            <i-button bind:click="privateNum" type="success" long="true">点击私有计数 {{privateNum}}</i-button>
-        </i-panel>
-
-        <i-panel title="系统的toast">
-            <i-button bind:click="nativeToast" type="success" long="true">点击wx的toast</i-button>
-        </i-panel>
-        <i-divider lineColor="#f5f5f5"></i-divider>
-        <!-- hello 组件 -->
-        <hello></hello>
-        <!-- 测试请求 -->
-        <i-divider lineColor="#f5f5f5"></i-divider>
-
-        <i-panel title="测试401异常请求">
-            <i-button bind:click="wxTest401Api" type="success" long="true">401请求</i-button>
-        </i-panel>
-
-        <i-divider lineColor="#f5f5f5"></i-divider>
-        <i-panel title="测试正常请求">
-            <i-button bind:click="wxTestApi" type="success" long="true">点击发出请求</i-button>
-        </i-panel>
-
-        <i-divider lineColor="#f5f5f5"></i-divider>
-        <i-panel title="同时发起20个请求">
-            <i-button bind:click="wxTenApi" type="success" long="true">点击发出20个请求</i-button>
-        </i-panel>
+<nav-bar showCapsule="false" navTitle="不知名的项目" bgType="{{index.bgType}}" bgColor="{{bgColor}}" disBackImg="{{false}}">
+    <view class="index-container">
+        <!-- 我的俱乐部组件 -->
+        <my-club apiType="{{1}}"  wx:if="{{myClubDeatil.isCreate}}" myClubId="{{myClubDeatil.clubId}}" id="myClub" data="{{myClubDeatil}}"></my-club>
+        <!-- 初次使用未创建时候的俱乐部 -->
+        <first-club wx:if="{{!myClubDeatil.isCreate}}"
+                    html="{{myClubDeatil.link}}"
+                    bindLogin="handleLogin"
+                    imgUrl="{{myClubDeatil.introduce||''}}">
+        </first-club>
     </view>
 </nav-bar>

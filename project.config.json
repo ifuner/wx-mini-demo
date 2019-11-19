@@ -1,46 +1,16 @@
 {
 	"description": "项目配置文件。",
-	"packOptions": {
-		"ignore": [
-			{
-				"type": "folder",
-				"value": ".idea"
-			},
-			{
-				"type": "folder",
-				"value": ".git"
-			},
-			{
-				"type": "file",
-				"value": ".gitignore"
-			},
-			{
-				"type": "file",
-				"value": ".eslintrc.js"
-			},
-			{
-				"type": "file",
-				"value": "package.json"
-			},
-			{
-				"type": "file",
-				"value": ".eslintignore"
-			},
-			{
-				"type": "regexp",
-				"value": "\\.(md|scss|less|html)$"
-			}
-		]
-	},
+	"packOptions": {},
 	"setting": {
-		"urlCheck": false,
+		"urlCheck": true,
 		"es6": true,
-		"enhance": false,
+		"enhance": true,
 		"postcss": true,
-		"minified": false,
+		"minified": true,
 		"newFeature": true,
 		"coverView": true,
-		"autoAudits": false,
+		"autoAudits": true,
+		"uglifyFileName": true,
 		"checkInvalidKey": true,
 		"checkSiteMap": true,
 		"uploadWithSourceMap": true,
@@ -52,12 +22,17 @@
 	},
 	"miniprogramRoot": "src/",
 	"compileType": "miniprogram",
-	"libVersion": "2.1.0",
+	"libVersion": "2.8.2",
 	"appid": "wxd50cdc9b0e852d4c",
 	"projectname": "baoji-club",
 	"isGameTourist": false,
 	"simulatorType": "wechat",
 	"simulatorPluginLibVersion": {},
+	"scripts": {
+		"beforeCompile": "",
+		"beforePreview": "",
+		"beforeUpload": ""
+	},
 	"condition": {
 		"search": {
 			"current": -1,
@@ -76,21 +51,95 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 0,
+			"current": 2,
 			"list": [
 				{
 					"id": 0,
-					"name": "pages/index/index",
+					"name": "index",
 					"pathName": "pages/index/index",
-					"query": "hello=fuck",
-					"scene": 1013
+					"query": "name=123123",
+					"scene": 1037,
+					"referrerInfo": {
+						"appId": "123123123",
+						"extraData": "{\"loginToken\":\"b09d09f6748240af988cf5edaa1e1bca\"}"
+					}
 				},
 				{
 					"id": 1,
 					"name": "debug",
-					"pathName": "pages/debug/debug",
+					"pathName": "packagesA/pages/debug/debug",
 					"query": "hello=fuck",
 					"scene": 1006
+				},
+				{
+					"id": 2,
+					"name": "UserMsg",
+					"pathName": "pages/UserMsg/UserMsg",
+					"query": "q=https%3A%2F%2Fh5.kaiheikeji.com%2Fwx%2FuserMsg.html%3Fparams%3D56be5548%7Cbaoji%7C1",
+					"scene": null
+				},
+				{
+					"id": 3,
+					"name": "AddBaoji",
+					"pathName": "pages/AddBaoji/AddBaoji",
+					"query": "clubId=123123123&type=firstCreate",
+					"scene": null
+				},
+				{
+					"id": 4,
+					"name": "CreateClub",
+					"pathName": "pages/CreateClub/CreateClub",
+					"query": "type=next&clubId=12312312",
+					"scene": null
+				},
+				{
+					"id": 5,
+					"name": "EditBaoji",
+					"pathName": "pages/EditBaoji/EditBaoji",
+					"query": "type=save&clubId=12312312",
+					"scene": null
+				},
+				{
+					"id": 6,
+					"name": "OtherClub",
+					"pathName": "pages/OtherClub/OtherClub",
+					"query": "clubId=246&type= redirectTo",
+					"scene": null
+				},
+				{
+					"id": 7,
+					"name": "PhoneLogin",
+					"pathName": "pages/PhoneLogin/PhoneLogin",
+					"query": "type=bind&wxAuth=0",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "wallet",
+					"pathName": "pages/wallet/wallet",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "my",
+					"pathName": "pages/my/my",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "webview",
+					"pathName": "pages/Webview/Webview",
+					"query": "type=bind&wxAuth=0",
+					"scene": null
+				},
+				{
+					"id": 11,
+					"name": "测试找不到层面",
+					"pathName": "pages/index/index2",
+					"query": "userId=6aaf0fba&role=baoji&game=1",
+					"scene": null
 				}
 			]
 		}

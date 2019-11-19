@@ -1,0 +1,35 @@
+.pd-container{
+    width: 100%;
+    padding: 30rpx;
+    box-sizing: border-box;
+    position: relative;
+}
+.search-box-input,
+.search-box-placeholder {
+    font-size:24rpx;
+    font-weight:400;
+}
+.search-box-input{
+    color:#000;
+    width: 100%;
+    height:70rpx;
+    line-height:70rpx;
+    padding-left: 10rpx;
+    border:1rpx solid #333;
+    position: relative;
+    margin-top: 20rpx;
+}
+.search-box-placeholder{
+    color:rgba(172,172,172,1);
+}
+.router-list{
+    font-size:26rpx;
+    line-height: 80rpx;
+    font-weight:500;
+    border-bottom:1rpx dashed #eee;
+}
+
+.text-container{
+    line-height: 40rpx;
+    word-break: break-all;
+}

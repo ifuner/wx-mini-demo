@@ -1,0 +1,27 @@
+.i-sticky-item-header {
+  font-size: 14px;
+  width: 100%;
+  height: 90rpx;
+  line-height:  90rpx;
+   background-color: rgba(50, 47, 81, 1);
+
+}
+
+.i-sticky-item-content {
+  font-size: 14px
+}
+
+.i-sticky-title {
+  width: 100%;
+  height: 90rpx;
+  padding: 0 15px;
+  background-color: rgba(50, 47, 81, 1);
+
+  box-sizing: border-box;
+}
+
+.i-sticky-fixed .i-sticky-title {
+  position: fixed;
+  top: 0;
+  z-index: 100;
+}

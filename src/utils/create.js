@@ -2,6 +2,8 @@ import diff from "./diff"
 import util from "./util"
 import wxApi from "./wxApi"
 import $http from "./request"
+import $router from "./router"
+
 let originData = null
 let globalStore = null
 let fnMapping = {}
@@ -41,20 +43,37 @@ export default function create(store, option) {
             this.store = store
             this.wxApi = wxApi
             this.$http = $http
+            this.$Message = util.message
             this.utils = util
+            this.$router = $router
             this._updatePath = updatePath
             rewriteUpdate(this)
             store.instances[this.route] = []
             store.instances[this.route].push(this)
-            tempQuery = Object.assign({},{query:e},{scene})
+            tempQuery = Object.assign({}, {query: e}, {scene})
             onLoad && onLoad.call(this, e)
             syncValues(store.data, this.data)
             this.setData(this.data)
         }
         // 建议初始化逻辑放在这里
         const onLogin = option.onLogin
+
         option.onLogin = function () {
-            onLogin && onLogin.call(this, tempQuery || {})
+            onLogin && onLogin.call(this, ...arguments)
+        }
+
+        // 建议初始化逻辑放在这里
+        const onPageScroll = option.onPageScroll
+        option.onPageScroll = function (target) {
+            this.scrollTimmer && clearTimeout(this.scrollTimmer)
+            this.scrollTimmer = setTimeout(() => {
+                this.scrollTimmer && clearTimeout(this.scrollTimmer)
+                const isScroll = target.scrollTop > store.data.customSize.height
+                this.setData({
+                    bgColor: isScroll ? `black` : "transparent"
+                })
+            }, 15)
+            onPageScroll && onPageScroll.call(this, target)
         }
         Page(option)
     } else {
@@ -64,6 +83,8 @@ export default function create(store, option) {
         store.ready = function () {
             this.wxApi = wxApi
             this.$http = $http
+            this.$router = $router
+            this.$Message = util.message
             this.utils = util
             if (pure) {
                 this.store = {data: store.data || {}}

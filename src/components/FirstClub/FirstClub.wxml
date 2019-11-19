@@ -1,0 +1,6 @@
+<view class="first-club">
+    <block>
+        <image bindtap="toWebview" class="img-club" src="{{imgUrl||defaultImg}}" mode="aspectFit"></image>
+        <button class="create-btn" hover-class="btn-hover-class" bindtap="toCreateClub">创建我的俱乐部</button>
+    </block>
+</view>

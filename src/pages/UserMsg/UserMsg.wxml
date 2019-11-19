@@ -1,0 +1,222 @@
+<!-- 请不要删除这个-->
+<mt-login id="login" bindlogin="onLogin"/>
+<wxs module="parse">
+    module.exports = {
+    getTag: function (role, level) {
+    var tempData = ""
+    switch (role) {
+    case 1:
+    tempData = "老板"
+    break;
+    case 2:
+    switch (level) {
+    case 1:
+    tempData = "冻结暴鸡"
+    break;
+    case 2:
+    tempData = "普通暴鸡"
+    break;
+    case 3:
+    tempData = "优选暴鸡"
+    break;
+    case 4:
+    tempData = "超级暴鸡"
+    break;
+    }
+    break;
+    case 3:
+    tempData = "暴娘"
+    break;
+    case 4:
+    tempData = "老板"
+    break;
+    }
+    return tempData;
+    },
+    getClass: function (role) {
+    var tempData = ""
+    switch (role) {
+    case 1:
+    tempData = "boss"
+    break;
+    case 2:
+    tempData = "baoji"
+    break;
+    case 3:
+    tempData = "baoniang"
+    break;
+    case 4:
+    tempData = "boss"
+    break;
+    }
+    return tempData;
+    }
+    }
+</wxs>
+<!-- 分享的组件 -->
+
+
+<view class="share-container" catchtouchmove="disMove" style="display: {{shareLayer?'block':'none'}}">
+    <cover-view class="close-btn" catchtouchmove="disMove">
+        <cover-image class="close-btn-icon" bindtap="handelCloseShare"
+                     src="https://g.baojiesports.com/bps/e2f1793388d14b079ba6d2a962db5bbb-64-64.png">
+        </cover-image>
+    </cover-view>
+    <import src="../../components/QrCode/QrCode.wxml"/>
+    <template is="qr-code"/>
+    <poster id="poster" hide-loading="{{true}}"
+            preload="{{true}}"
+            config="{{posterConfig}}"
+            bind:success="onPosterSuccess"
+            bind:fail="onPosterFail">
+    </poster>
+    <cover-view class="img-container" catchtouchmove="disMove">
+        <cover-image wx:if="{{tempCanvasImg}}"
+                     style="width:{{posterConfig.width/1.2}}rpx;height: {{posterConfig.height/1.2}}rpx"
+                     bindtap="previewImage" src="{{tempCanvasImg}}" class="canvas-img"
+                     mode="center">
+        </cover-image>
+    </cover-view>
+    <view class="bottom-button" catchtouchmove="disMove">
+        <button class="btn-li" bindtap="saveToLocla" hover-class="btn-share-class">
+            保存到相册
+        </button>
+        <view class="line"></view>
+        <button open-type="share" class="btn-li wx-card" hover-class="btn-share-class">
+            发送给好友
+        </button>
+    </view>
+</view>
+
+<nav-bar showCapsule="{{!shareLayer}}" bgColor="{{bgColor}}" disBackImg="{{false}}">
+    <view class="user-msg-container" style="display: {{!needLogin?'block':'none'}}">
+        <!-- 用户顶部的 -->
+        <view class="user-header">
+            <view class="line"></view>
+            <view class="left-box">
+                <view class="status" wx:if="{{userData.receiveOrderStatus}}">Ta正在接单中</view>
+                <image mode="aspectFill" class="user-img"
+                       src="{{userData.thumbnail||defaultUserImg}}"></image>
+                <view class="msg-box">
+                    <view class="tag {{parse.getClass(userData.role)}}">
+                        <text>{{parse.getTag(userData.role,userData.level||2)}}</text>
+                    </view>
+                    <view class="user-name">
+                        <view class="user-name-text ellipsis">{{userData.username}}</view>
+                        <view class="sexy {{userData.sex==1?'':'women'}}"></view>
+                    </view>
+                    <view class="user-id" bindtap="copyId">ID：{{userData.chickenId}}</view>
+                    <view class="user-desc">{{userData.desc}}</view>
+                    <button class="notice-btn" wx:if="{{!userData.isMyself}}" hover-class="btn-hover-scale-class"
+                            data-status="{{userData.attentionStatus}}" bindtap="focusUser">
+                        {{userData.attentionStatus?'已关注':'关注'}}
+                    </button>
+                </view>
+            </view>
+            <view class="right-box">
+                <scroll-view scroll-y class="scroll-game-container">
+                    <view class="scroll-inner-game">
+                        <image lazy-load="{{true}}" src="{{item}}" wx:for="{{userData.goodAtGameList}}"
+                               wx:key="{{item}}"></image>
+                    </view>
+                </scroll-view>
+                <view class="notice-container">
+                    <view class="box-inner">
+                        <view class="box-tips">关注</view>
+                        <view class="box-num">{{userData.attention}}</view>
+                    </view>
+                    <view class="box-inner margin-top">
+                        <view class="box-tips">粉丝</view>
+                        <view class="box-num">{{userData.fans}}</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+
+        <!-- 饼图区域 -->
+        <view class="pie-container bao-niang">
+            <view class="circle_process">
+                <canvas class="progress_bg" canvas-id="canvasbg_1"></canvas>
+                <canvas class="progress_canvas" canvas-id="canvasProgress_1"></canvas>
+                <view class="data-container">
+                    <view class="text-tips">{{userData.role==="boss"?"下":"接"}}单</view>
+                    <view class="data-num">{{userData.order}}</view>
+                </view>
+            </view>
+            <block wx:if="{{queryData.role!=='boss'}}">
+                <view class="circle_process">
+                    <canvas class="progress_bg" canvas-id="canvasbg_2"></canvas>
+                    <canvas class="progress_canvas" canvas-id="canvasProgress_2"></canvas>
+                    <view class="data-container">
+                        <view class="text-tips">胜率(%)</view>
+                        <view class="data-num">{{userData.winningPercentage}}</view>
+                    </view>
+                </view>
+                <view class="circle_process">
+                    <canvas class="progress_bg" canvas-id="canvasbg_3"></canvas>
+                    <canvas class="progress_canvas" canvas-id="canvasProgress_3"></canvas>
+                    <view class="data-container">
+                        <view class="text-tips">{{userData.evaluationScore?"评分":"暂无评分"}}</view>
+                        <view class="data-num">{{userData.evaluationScore||"-"}}</view>
+                    </view>
+                </view>
+            </block>
+        </view>
+
+        <!-- club -->
+        <view class="back-boss" bindtap="toOtherClub" wx:if="{{userData.clubId}}" data-value="{{userData.clubId}}">
+            <view class="boss-left">Ta创建的俱乐部</view>
+            <view class="boss-right">
+                <view class="boss-name">
+                    {{userData.clubName}}
+                </view>
+            </view>
+        </view>
+
+        <!-- 当前进行中的卡片 -->
+        <view class="current-card">
+            <view bindtap="coverViewClick" style="display: {{!loginInfo?'block':'none'}}" class="cover-view"></view>
+            <block wx:if="{{userData.exclusiveEscortDto}}">
+                <view class="box-li">
+                    <navigator hover-class="nav-hover-class">
+                        <view class="card-type">专属陪玩</view>
+                        <view class="card-desc">{{userData.exclusiveEscortDto.sign}}</view>
+                        <view class="card-order-num">成交 {{userData.exclusiveEscortDto.transactionOrder}} 单</view>
+                        <button class="card-btn"> 立即下单</button>
+                        <view class="right-price-container">
+                            <view class="now-point">
+                                <view class="now-price-cheap">{{userData.exclusiveEscortDto.preferentialPrice}}</view>
+                                元起
+                            </view>
+                        </view>
+                    </navigator>
+                </view>
+            </block>
+            <block wx:if="{{userData.motorcadeFlyDto}}">
+                <view class="box-li">
+                    <navigator
+                            hover-class="nav-hover-class">
+                        <view class="card-type">车队带飞</view>
+                        <view class="card-desc">{{userData.motorcadeFlyDto.title}}</view>
+                        <view class="card-order-num">成交 {{userData.motorcadeFlyDto.transactionOrder}} 单</view>
+                        <button class="card-btn">立即下单</button>
+                        <view class="right-price-container">
+                            <view class="now-point">低至
+                                <view class="now-price-cheap">{{userData.motorcadeFlyDto.discount}}</view>
+                                折
+                            </view>
+                        </view>
+                    </navigator>
+                </view>
+            </block>
+        </view>
+            <view class="button-group">
+                <block wx:if="{{!userData.isMyself}}">
+                    <button class="share-btn" hover-class="btn-hover-class" bindtap="handelShowShare"
+                            disabled="{{ queryData.role==='boss'}}">分享Ta
+                    </button>
+                    <navigator class="chat-btn" hover-class="btn-hover-class">聊一聊</navigator>
+                </block>
+            </view>
+    </view>
+</nav-bar>

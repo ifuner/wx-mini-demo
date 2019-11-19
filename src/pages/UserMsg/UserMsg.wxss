@@ -1,0 +1,457 @@
+@import "./Share.wxss";
+.user-msg-container{
+    padding: 30rpx;
+    box-sizing: border-box;
+    position: relative;
+}
+.user-header{
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+}
+
+.user-header .left-box{
+    width:551rpx;
+    height:550rpx;
+    border:2rpx solid;
+    border-image:linear-gradient(360deg, rgba(56,235,255,0.17), rgba(5,185,255,1)) 2 2;
+    filter:blur(0);
+    position: relative;
+}
+
+.line{
+    width: 100%;
+    height:1rpx;
+    background:rgba(120,120,120,1);
+    position: absolute;
+    left: 0;
+    /*z-index: -1;*/
+    bottom: 57rpx;
+}
+
+.left-box .user-img{
+    width: 100%;
+    height: 100%;
+}
+.left-box .msg-box{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    height: 230rpx;
+    padding: 0 20rpx;
+    box-sizing: border-box;
+    background:linear-gradient(180deg,rgba(0,0,0,0) 0%,rgba(0,0,0,0.82) 100%);
+}
+.left-box .status{
+    background: url("https://g.baojiesports.com/bps/d1f3a5e60d10413a8481a94245d375a7-220-40.png") 0 0 no-repeat;
+    -webkit-background-size: cover;
+    background-size: cover;
+    width: 220rpx;
+    height: 40rpx;
+    position: absolute;
+    right: 0;
+    top: 20rpx;
+    font-weight:500;
+    font-size:20rpx;
+    line-height: 40rpx;
+    color:rgba(249,249,249,1);
+    text-indent: 42rpx;
+}
+.tag{
+    width: auto;
+    padding: 0 10rpx;
+    height:30rpx;
+    line-height:30rpx;
+    background:rgba(255,23,81,1);
+    border-radius:15rpx;
+    font-size:18rpx;
+    font-weight: 600;
+    display: inline-block;
+    text-align: center;
+    box-sizing: border-box;
+    color:#fff;
+    margin-top: 35rpx;
+}
+.msg-box .user-name{
+    display: flex;
+    align-items: center;
+}
+.msg-box .user-name .user-name-text{
+    font-size:36rpx;
+    font-weight:600;
+    color:rgba(249,249,249,1);
+    line-height:50rpx;
+    min-height:50rpx;
+    max-width: 60%;
+    margin-top: 6rpx;
+}
+.msg-box .sexy{
+    width:40rpx;
+    height:36rpx;
+    background:rgba(0,0,0,0.5);
+    border-radius:18rpx;
+    background: url("https://g.baojiesports.com/bps/8489cb56a0c84ca7811c1f8d81dbec45-40-36.png") center center no-repeat;
+    background-size: cover !important;
+    display: inline-block;
+    margin-left: 15rpx;
+}
+.msg-box .sexy.women{
+    background: url("https://g.baojiesports.com/bps/da432ac2b08e42b1a812982bd43bc58c-40-36.png") center center no-repeat;
+}
+.msg-box .user-id{
+    font-size:24rpx;
+    font-weight:400;
+    color:rgba(249,249,249,1);
+    line-height:33rpx;
+    min-height:33rpx;
+    margin-top: 6rpx;
+}
+.msg-box .user-desc{
+    max-width: 60%;
+    font-weight:400;
+    color:rgba(172,172,172,1);
+    font-size:20rpx;
+    line-height:28rpx;
+    min-height:28rpx;
+    margin-top: 6rpx;
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+}
+.msg-box  .notice-btn::after{
+    border:none;
+    transform: scale(1);
+    border-radius: 0;
+}
+.msg-box  .notice-btn{
+    background: url("https://g.baojiesports.com/bps/81c6acfd198b42c5a3c012bdd9d8de3d-116-42.png") 0 0 no-repeat;
+    -webkit-background-size: cover;
+    background-size: cover;
+    border-radius: 0;
+    width: 116rpx;
+    height: 42rpx;
+    font-size:24rpx;
+    font-weight:600;
+    padding: 0;
+    color:rgba(83,237,255,1);
+    line-height:42rpx;
+    text-align: center;
+    position: absolute;
+    bottom: 41rpx;
+    right: 41rpx;
+}
+.user-header{
+    position: relative;
+}
+.user-header .right-box{
+    position: relative;
+}
+.user-header .right-box .scroll-game-container{
+    max-height:260rpx;
+}
+.scroll-inner-game{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+}
+.scroll-inner-game image{
+    width: 48rpx;
+    height: 48rpx;
+    display: block;
+    border-radius: 50%;
+    border:1rpx solid rgba(255,255,255,1);
+    margin-bottom: 20rpx;
+}
+.notice-container{
+    width: 100rpx;
+    text-align: right;
+    position: absolute;
+    width: 100rpx;
+    bottom: 75rpx;
+    right: 0;
+}
+.box-inner .box-tips{
+    font-size:20rpx;
+    font-weight:400;
+    color:rgba(249,249,249,1);
+    line-height:28rpx;
+}
+.box-inner .box-num{
+    font-size:42rpx;
+    color:rgba(83,237,255,1);
+    line-height:52rpx;
+    height: 52rpx;
+    font-family:bebasneueregular;
+}
+.box-inner.margin-top{
+    margin-top: 30rpx;
+}
+
+
+
+/* 饼图区域 start */
+.pie-container{
+    position: relative;
+    display: flex;
+    height:178rpx;
+    justify-content: space-between;
+    margin-top: 30rpx;
+}
+
+.circle_process{
+    position: relative;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+.circle_process,.progress_bg,.progress_canvas{
+    width: 89px;
+    height: 89px;
+}
+
+.progress_bg{
+    position: absolute;
+}
+
+.data-container{
+    color:rgba(249,249,249,1);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    text-align: center;
+}
+.data-container .text-tips{
+    line-height:28rpx;
+    font-weight:400;
+    font-size:20rpx;
+}
+.data-container .data-num{
+    font-family:BebasNeueBold;
+    color:rgba(249,249,249,1);
+    font-size: 44rpx;
+    line-height:58rpx;
+}
+/* 饼图区域 stop */
+
+
+/* club 区域 start */
+/* 幕后老板 */
+.back-boss{
+    height:100rpx;
+    line-height: 100rpx;
+    border:1rpx solid rgba(120,120,120,1);
+    border-left: none;
+    border-right: none;
+    margin-top: 45rpx;
+    font-size:28rpx;
+    font-weight:500;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+.boss-right::after{
+    content:"";
+    position: absolute;
+    right: 0;
+    top: 50%;
+    width: 36rpx;
+    height: 36rpx;
+    transform: translateY(-50%);
+    background: url("https://g.baojiesports.com/bps/239c3eb064084c81af391870b4769fac-36-36.png") 0 0 no-repeat;
+    -webkit-background-size: cover;
+    background-size: cover;
+}
+.boss-left{
+    color:rgba(249,249,249,1);
+}
+.boss-right{
+    display: flex;
+    align-items: center;
+}
+
+.boss-right .boss-name{
+    color:rgba(83,237,255,1);
+    margin-left: 20rpx;
+    margin-right: 36rpx;
+}
+/* club 区域 stop */
+
+/* 当前进行的订单 start */
+.current-card{
+    position: relative;
+    margin-top: 35rpx;
+    padding-bottom: 180rpx;
+}
+.cover-view{
+    background-color: transparent;
+    position: absolute;
+    z-index: 100;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+.current-card .box-li{
+    height: auto;
+    background:rgba(35,35,35,1);
+    border:2rpx solid;
+    border-image:linear-gradient(180deg, rgba(108,231,255,0.3), rgba(75,232,255,0)) 2 2;
+    margin-bottom: 30rpx;
+    padding: 30rpx;
+    box-sizing: border-box;
+    position: relative;
+}
+.box-li navigator{
+    transition: all .1s ease-in;
+}
+.nav-hover-class{
+
+}
+.current-card .card-type{
+    font-size:20rpx;
+    font-weight:500;
+    color:rgba(83,237,255,1);
+    line-height:28rpx;
+}
+.current-card .card-desc{
+    font-size:28rpx;
+    max-width:383rpx;
+    font-weight:600;
+    color:rgba(249,249,249,1);
+    line-height:40rpx;
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    margin-top: 6rpx;
+}
+.current-card .card-order-num{
+    font-size:20rpx;
+    font-weight:400;
+    color:rgba(172,172,172,1);
+    line-height:28rpx;
+}
+.current-card .card-btn::after{
+    border-radius: 0;
+    transform: scale(1);
+    border:none
+}
+.current-card .card-btn{
+    border:none;
+    background: url("https://g.baojiesports.com/bps/81c6acfd198b42c5a3c012bdd9d8de3d-116-42.png") 0 0 no-repeat;
+    -webkit-background-size: cover;
+    background-size: cover;
+    width: 116rpx;
+    height: 42rpx;
+    font-size:20rpx;
+    font-weight:600;
+    color:rgba(83,237,255,1);
+    line-height:42rpx;
+    text-align: center;
+    margin: 0;
+    margin-top: 20rpx;
+    padding: 0;
+    border-radius: 0;
+}
+.right-price-container{
+    position: absolute;
+    right: 30rpx;
+    bottom: 30rpx;
+    text-align: right;
+}
+
+.right-price-container .old-price,.right-price-container .now-price,.now-price-cheap{
+    font-family:BebasNeueBold;
+}
+.right-price-container .old-price{
+    font-size:24rpx;
+    color:rgba(249,249,249,1);
+    line-height:29rpx;
+    position: relative;
+    display: inline-block;
+}
+.right-price-container .old-price::after{
+    font-family: "sans-serif";
+    content:"";
+    width: 100%;
+    height: 2px;
+    z-index: 1;
+    background-color:rgba(249,249,249,1);
+    position: absolute;
+    left: 50%;
+    top: 12rpx;
+    transform: translateX(-50%);
+}
+.right-price-container .now-price,.right-price-container .now-price-cheap{
+    font-size:60rpx;
+    color:rgba(255,78,135,1);
+    line-height:72rpx;
+}
+.now-price{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 20rpx;
+}
+.now-price-cheap{
+    display: inline-block;
+}
+.right-price-container .now-point{
+    font-weight:400;
+    color:rgba(172,172,172,1);
+    line-height:28rpx;
+    font-size:20rpx;
+}
+/* 当前进行的订单 stop */
+
+/* button-group start*/
+.button-group{
+    width: 100%;
+    height: 90rpx;
+    bottom: 90rpx;
+    position: fixed;
+    z-index: 100;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+}
+
+.button-group button::after{
+    border:none;
+    transform: scale(1);
+    border-radius: 0;
+}
+.share-btn{
+    background: url("https://g.baojiesports.com/bps/6cd433a59a174e5eb750c726a6f01c96-329-90.png") center center no-repeat;
+}
+.chat-btn{
+    background: url("https://g.baojiesports.com/bps/c79233b92c904b2e85071b15c3a03262-329-90.png") center center no-repeat;
+}
+.button-group button,.button-group navigator{
+    line-height: 90rpx;
+    text-align: center;
+    font-size:32rpx;
+    color:rgba(24,24,24,1);
+    background-size: cover;
+    width: 329rpx;
+    font-weight:600;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    border-radius: 0;
+}
+/* button-group stop*/
+.hide-canvas {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    transform: translate3d(-9999rpx, 0, 0);
+}

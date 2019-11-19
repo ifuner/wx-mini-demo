@@ -1,0 +1,23 @@
+@import "./common.wxss";
+.chat-btn[disabled]:not([type]) {
+    background-color: transparent;
+    opacity: .2;
+    color:rgba(24,24,24,1);
+}
+
+.button-group button,.button-group navigator{
+    line-height: 90rpx;
+    text-align: center;
+    font-size:28rpx;
+    color:rgba(24,24,24,1);
+    background-size: cover;
+    width: 329rpx;
+    font-weight:600;
+    height: 100%;
+}
+/* button-group stop*/
+button::after{
+    border:none;
+    transform: scale(1);
+    border-radius: 0;
+}

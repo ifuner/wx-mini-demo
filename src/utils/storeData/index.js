@@ -1,14 +1,10 @@
 /**
- * ifuner 制作 @18658226071@163.com
+ * ifuner 制作 757148586@qq.com
  */
 
 "use strict"
 export default {
     data: {
-        hello: "world",
-        num: 0
-    },
-    sayHello() {
-        return `hello ${this.index.data.hello}`
+        bgType:"bg-2", // 背景图片
     }
 }

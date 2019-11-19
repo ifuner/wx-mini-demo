@@ -1,0 +1,106 @@
+<wxs module="parse">
+    module.exports = {
+    getTag:function(playerType,tagDescribe){
+    return playerType==1?tagDescribe:"暴娘";
+    },
+    getClass:function(playerType){
+    return playerType==1?'baoji':'baoniang'
+    }
+    }
+</wxs>
+<view class="my-club-container">
+    <view class="header">
+        <view class="left-box">
+            <view class="user-name ellipsis">{{data.name||"暴鸡俱乐部"}}</view>
+            <view class="user-desc">{{data.signature||"这个人很懒没有签名哦~"}}
+            </view>
+            <view class="button-group">
+                <button class="share" open-type="share" disabled="{{!data.name}}">分享</button>
+                <button class="edit-msg" wx:if="{{isMine}}" bindtap="toEditClubMsg">编辑资料</button>
+            </view>
+        </view>
+        <view class="user-img" bindtap="previewImage">
+            <image src="{{data.logoUrl||defaultClubImg}}"></image>
+        </view>
+    </view>
+
+    <view class="money" wx:if="{{isMine}}" bindtap="toWalletPages">
+        <view class="box-li">
+            <view class="box-li-top">
+                <view class="num">{{(data.totalAmount||0)/100}}</view>
+                <view class="line"></view>
+            </view>
+            <view class="num-tips">总营业额(元)</view>
+        </view>
+        <view class="box-li">
+            <view class="box-li-top">
+                <view class="num">{{(data.todayAmount||0)/100}}</view>
+                <view class="line"></view>
+            </view>
+            <view class="num-tips">今日营业额(元)</view>
+        </view>
+        <view class="box-li">
+            <view class="box-li-top">
+                <view class="num">{{(data.outAmount||0)/100}}</view>
+                <view class="line"></view>
+            </view>
+            <view class="num-tips">累计收益(元)</view>
+        </view>
+        <view class="box-li">
+            <view class="box-li-top">
+                <view class="num">{{(data.examineAmount||0)/100}}</view>
+                <view class="line"></view>
+            </view>
+            <view class="num-tips">可提现收益(元)</view>
+        </view>
+    </view>
+
+    <!-- 俱乐部成员 -->
+    <view class="club-bar">
+        <view class="left-title">
+            俱乐部成员（{{data.baojiCount||0}}）
+        </view>
+
+        <button class="edit" bindtap="toEditBaoji" wx:if="{{isMine}}">编辑</button>
+    </view>
+
+    <mt-scroll-game id="gameScroll" bindchange="tabScrollChange"></mt-scroll-game>
+    <!-- scroll 滚动区域-->
+    <scroll-view scroll-y class="scroll-user-container">
+        <view class="scroll-inner-user">
+            <view class="user-box" data-value="{{item.baoJiUid}}" data-role="{{item.playerType}}"
+                  bindtap="toUserMsgPages"
+                  wx:for="{{baojiData}}"
+                  wx:key="{{item.baoJiUid}}">
+                <image class="user-img-other"
+                       mode="aspectFill"
+                       lazy-load="{{true}}"
+                       src="{{item.logoUrl||defaultUserImg}}"/>
+                <!--<view class="user-img-other" style="background-image: url('{{item.logoUrl||defaultUserImg}}');">-->
+
+                <!--</view>-->
+                <view class="user-msg-box">
+                    <view class="user-name">
+                        <view class="user-name-text ellipsis">{{item.name}}</view>
+                        <view class="tag {{parse.getClass(item.playerType)}}">
+                            <text>{{parse.getTag(item.playerType,item.tagDescribe)}}</text>
+                        </view>
+                    </view>
+                    <view class="money-data">
+                        {{item.grade||0}} 分 {{item.totalOrder||0}} 单
+                    </view>
+                    <view class="order-btn">立即下单</view>
+                </view>
+            </view>
+
+            <text class="fixed-tips" wx:if="{{isRequestApi&&!baojiData.length}}">
+                俱乐部暂未添加{{isBaoji?"暴鸡":"暴娘"}}
+            </text>
+        </view>
+    </scroll-view>
+    <!-- 创建俱乐部得按钮 -->
+    <button class="create-btn" bindtap="toMyClub" data-status="{{(!isMine&&!myClubDeatil.isCreate)}}"
+            hover-class="btn-hover-class" wx:if="{{!isMine}}">
+        {{(!isMine&&!myClubDeatil.isCreate)?'创建value我的俱乐部':'返回我的俱乐部'}}
+    </button>
+</view>

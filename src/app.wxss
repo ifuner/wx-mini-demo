@@ -1,36 +1,7 @@
-pages {
+
+page {
     position: relative;
+    /*background-color: #181818;*/
 }
 
-@keyframes tada {
-    0% {
-        -webkit-transform: scaleX(1);
-        transform: scaleX(1)
-    }
-
-    10%,
-    20% {
-        -webkit-transform: scale3d(.9, .9, .9) rotate(-3deg);
-        transform: scale3d(.9, .9, .9) rotate(-3deg)
-    }
-
-    30%,
-    50%,
-    70%,
-    90% {
-        -webkit-transform: scale3d(1.1, 1.1, 1.1) rotate(3deg);
-        transform: scale3d(1.1, 1.1, 1.1) rotate(3deg)
-    }
-
-    40%,
-    60%,
-    80% {
-        -webkit-transform: scale3d(1.1, 1.1, 1.1) rotate(-3deg);
-        transform: scale3d(1.1, 1.1, 1.1) rotate(-3deg)
-    }
-
-    to {
-        -webkit-transform: scaleX(1);
-        transform: scaleX(1)
-    }
-}
+@import "./commonStyle/common.wxss";
